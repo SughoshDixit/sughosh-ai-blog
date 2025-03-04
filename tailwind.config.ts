@@ -28,8 +28,11 @@ export default {
 			colors: {
 				'deep-blue': '#2055be',  // Rich blue
 				'soft-blue': '#1a9ca8',  // Teal blue
-				'soft-pink': '#f8d8e7',  // Adding soft pink color
-				'accent-gold': '#F59E0B', // Keeping the gold accent
+				'soft-pink': '#f8d8e7',  // Soft pink color
+				'magenta': '#D946EF',    // Vibrant magenta
+				'light-magenta': '#E879F9', // Lighter magenta for dark mode
+				'dark-magenta': '#A21CAF', // Darker magenta for light mode
+				'accent-gold': '#F59E0B', // Gold accent
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

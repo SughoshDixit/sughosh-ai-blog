@@ -8,89 +8,83 @@
 
 @layer base {
   :root {
-    --background: 210 50% 98%;
-    --foreground: 220 80% 20%;
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 300 70% 40%; /* Magenta for main text */
 
     --card: 0 0% 100%;
-    --card-foreground: 220 80% 20%;
+    --card-foreground: 300 70% 30%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 80% 20%;
+    --popover-foreground: 300 70% 30%;
 
-    --primary: 220 80% 45%; /* Rich blue - core brand color */
-    --primary-foreground: 0 0% 98%;
+    --primary: 300 70% 40%; /* Magenta as primary */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 190 80% 45%; /* Teal blue - for important actions */
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 280 65% 45%; /* Purple shade as secondary */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 15% 94%;
-    --muted-foreground: 220 20% 46%;
+    --muted: 280 20% 95%;
+    --muted-foreground: 300 30% 40%;
 
-    --accent: 35 95% 52%; /* Gold/amber for subtle highlights */
-    --accent-foreground: 220 80% 20%;
+    --accent: 300 70% 90%; /* Light magenta accent */
+    --accent-foreground: 300 80% 30%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 13% 90%;
-    --input: 220 13% 90%;
-    --ring: 220 80% 45%;
+    --border: 300 20% 90%;
+    --input: 300 20% 90%;
+    --ring: 300 70% 40%;
 
     --radius: 0.375rem;
 
-    --sidebar-background: 210 30% 96%;
-    --sidebar-foreground: 220 20% 46%;
-    --sidebar-primary: 220 80% 45%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 210 30% 94%;
-    --sidebar-accent-foreground: 220 80% 20%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 220 80% 45%;
-    
-    --deep-blue: 220 80% 45%;  /* #2055be - rich blue */
-    --soft-blue: 190 80% 45%;  /* #1a9ca8 - teal blue */
+    --sidebar-background: 300 30% 98%;
+    --sidebar-foreground: 300 70% 40%;
+    --sidebar-primary: 300 70% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 300 30% 94%;
+    --sidebar-accent-foreground: 300 70% 30%;
+    --sidebar-border: 300 20% 91%;
+    --sidebar-ring: 300 70% 40%;
   }
 
   .dark {
-    --background: 220 25% 10%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 300 90% 75%; /* Lighter magenta for dark mode */
 
-    --card: 220 25% 15%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 300 90% 80%;
 
-    --popover: 220 25% 15%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 300 90% 80%;
 
-    --primary: 220 70% 60%; /* Brighter rich blue for dark mode */
+    --primary: 300 90% 65%; /* Brighter magenta for dark mode */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 190 70% 55%; /* Brighter teal blue for dark mode */
+    --secondary: 280 85% 65%; /* Brighter purple for dark mode */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 20% 20%;
-    --muted-foreground: 220 10% 70%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 300 70% 70%;
 
-    --accent: 35 85% 55%; /* Brighter gold/amber for dark mode */
+    --accent: 300 90% 50%; /* Vibrant magenta accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 220 70% 60%;
+    --border: 300 20% 20%;
+    --input: 300 20% 20%;
+    --ring: 300 90% 65%;
     
-    --sidebar-background: 220 25% 15%;
-    --sidebar-foreground: 220 10% 80%;
-    --sidebar-primary: 220 70% 60%;
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 300 80% 75%;
+    --sidebar-primary: 300 90% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 20%;
-    --sidebar-accent-foreground: 220 10% 75%;
-    --sidebar-border: 220 15% 20%;
-    --sidebar-ring: 220 70% 60%;
-    
-    --deep-blue: 220 70% 60%;  /* #4d8df3 - brighter rich blue */
-    --soft-blue: 190 70% 55%;  /* #26c5d3 - brighter teal blue */
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 300 80% 75%;
+    --sidebar-border: 300 20% 20%;
+    --sidebar-ring: 300 90% 65%;
   }
 }
 
@@ -111,11 +105,11 @@
   }
 
   .section-title {
-    @apply text-4xl font-display font-bold tracking-tight mb-6;
+    @apply text-4xl font-display font-bold tracking-tight mb-6 text-magenta dark:text-light-magenta;
   }
 
   .section-subtitle {
-    @apply text-lg text-muted-foreground mb-10 max-w-3xl;
+    @apply text-lg text-dark-magenta/90 dark:text-light-magenta/90 mb-10 max-w-3xl;
   }
 
   .page-transition-enter {
@@ -139,31 +133,31 @@
   }
   
   .text-gradient {
-    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-magenta via-magenta/90 to-magenta/70 bg-clip-text text-transparent;
   }
   
   .text-gradient-primary {
-    @apply bg-gradient-to-br from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-magenta via-magenta/80 to-magenta/60 bg-clip-text text-transparent;
   }
   
   .gallery-bg {
-    @apply bg-gradient-to-br from-white to-soft-blue/10 dark:from-deep-blue dark:to-deep-blue/80;
+    @apply bg-gradient-to-br from-white to-magenta/10 dark:from-black dark:to-magenta/20;
   }
   
   .gallery-card-hover {
-    @apply transition-all duration-300 hover:shadow-md hover:shadow-deep-blue/10 dark:hover:shadow-deep-blue/10;
+    @apply transition-all duration-300 hover:shadow-md hover:shadow-magenta/20 dark:hover:shadow-light-magenta/20;
   }
   
   .redwood-button {
-    @apply rounded-md bg-primary text-primary-foreground font-medium px-4 py-2 transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
+    @apply rounded-md bg-magenta text-white font-medium px-4 py-2 transition-colors hover:bg-magenta/90 focus:outline-none focus:ring-2 focus:ring-magenta/50 focus:ring-offset-2 dark:bg-light-magenta;
   }
   
   .redwood-card {
-    @apply bg-background border border-border rounded-md p-6 shadow-sm;
+    @apply bg-background border border-magenta/20 dark:border-light-magenta/20 rounded-md p-6 shadow-sm;
   }
   
   .redwood-input {
-    @apply bg-background border border-input rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50;
+    @apply bg-background border border-input rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-magenta/50 dark:focus:ring-light-magenta/50;
   }
   
   .redwood-container {
