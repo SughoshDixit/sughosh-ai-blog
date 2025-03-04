@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Code, Database, FilmIcon, Football, History, Play, Rocket } from "lucide-react";
+import { Code, Database, FilmIcon, Trophy, History, Play, Rocket } from "lucide-react";
 
 export function About() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -12,7 +12,7 @@ export function About() {
     { name: "Web Development", icon: <Code className="h-4 w-4 mr-2" /> },
     { name: "Product Development", icon: <Rocket className="h-4 w-4 mr-2" /> },
     { name: "Competitive Programming", icon: <Code className="h-4 w-4 mr-2" /> },
-    { name: "Football", icon: <Football className="h-4 w-4 mr-2" /> },
+    { name: "Football", icon: <Trophy className="h-4 w-4 mr-2" /> },
     { name: "Astronomy", icon: <FilmIcon className="h-4 w-4 mr-2" /> },
     { name: "Bharat's History", icon: <History className="h-4 w-4 mr-2" /> },
   ];

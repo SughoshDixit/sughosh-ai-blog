@@ -1,12 +1,12 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { FilmIcon, History, MusicIcon, Football, Star } from "lucide-react";
+import { FilmIcon, History, MusicIcon, Trophy, Star } from "lucide-react";
 
 export function FunFacts() {
   const facts = [
     {
       id: 1,
-      icon: <Football className="h-10 w-10 text-primary" />,
+      icon: <Trophy className="h-10 w-10 text-primary" />,
       title: "Football Enthusiast",
       description: "I'm passionate about football, both playing and watching. It's not just a sport but a way of life that teaches teamwork and perseverance."
     },
