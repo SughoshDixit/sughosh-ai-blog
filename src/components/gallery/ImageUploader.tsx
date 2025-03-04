@@ -23,8 +23,8 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuth();
 
-  // Admin email - replace with your email
-  const ADMIN_EMAIL = user?.email;
+  // Admin email - set to your email
+  const ADMIN_EMAIL = "sughoshpdixit@gmail.com";
 
   const isAdmin = !!user && ADMIN_EMAIL === user.email;
 

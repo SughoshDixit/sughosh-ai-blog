@@ -20,7 +20,7 @@ import {
   QueryDocumentSnapshot
 } from "firebase/firestore";
 
-const ADMIN_EMAIL = ""; // Replace with your email in production
+const ADMIN_EMAIL = "sughoshpdixit@gmail.com"; // Set you as the admin
 
 const AIGalleryPage = () => {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});

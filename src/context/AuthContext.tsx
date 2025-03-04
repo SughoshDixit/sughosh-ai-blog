@@ -4,7 +4,8 @@ import {
   User as FirebaseUser,
   signInWithPopup, 
   signOut as firebaseSignOut,
-  onAuthStateChanged 
+  onAuthStateChanged,
+  GoogleAuthProvider
 } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
 import { toast } from "sonner";
@@ -44,11 +45,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      // The signed-in user info.
+      const user = result.user;
+      console.log("User signed in:", user.email);
       toast.success("Successfully signed in with Google!");
     } catch (error) {
-      console.error("Error signing in with Google:", error);
-      toast.error("Failed to sign in with Google. Please try again.");
+      if (error instanceof Error) {
+        console.error("Error signing in with Google:", error.message);
+        toast.error(`Failed to sign in: ${error.message}`);
+      } else {
+        console.error("Unknown error signing in with Google");
+        toast.error("Failed to sign in with Google. Please try again.");
+      }
     }
   };
 
