@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import { Code, Database, FilmIcon, Trophy, History, Play, Rocket } from "lucide-react";
 
 export function About() {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   const skills = [
     { name: "Data Science", icon: <Database className="h-4 w-4 mr-2" /> },
     { name: "Web Development", icon: <Code className="h-4 w-4 mr-2" /> },
@@ -40,15 +38,14 @@ export function About() {
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] hover-scale shadow-xl">
               <div className="absolute inset-0 bg-primary/10 rounded-2xl" />
-              <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-                alt="Portrait"
-                className={cn(
-                  "w-full h-full object-cover transition-all duration-700",
-                  imageLoaded ? "image-blur-loaded" : "image-blur-loading"
-                )}
-                onLoad={() => setImageLoaded(true)}
-              />
+              {/* Replace image with embedded video */}
+              <iframe
+                src="https://drive.google.com/file/d/1TGtD21UDdki5dBU_EtWCeWFQ4Gf70lzl/preview"
+                allow="autoplay"
+                className="w-full h-full"
+                style={{ border: 0 }}
+                allowFullScreen
+              ></iframe>
             </div>
             
             {/* Decorative element */}
