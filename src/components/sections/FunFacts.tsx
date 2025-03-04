@@ -31,7 +31,7 @@ export function FunFacts() {
   ];
 
   return (
-    <section className="section-container bg-background/50 dark:bg-muted/10">
+    <section id="fun-facts" className="section-container bg-background/50 dark:bg-muted/10">
       <div className="container page-container">
         <div className="mb-16 text-center">
           <h2 className="section-title text-gradient-primary dark:text-gradient">Beyond Data Science</h2>

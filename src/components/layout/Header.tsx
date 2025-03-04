@@ -29,13 +29,13 @@ export function Header() {
     { name: "Home", path: "/" },
     { name: "About", path: "/#about" },
     { name: "Projects", path: "/#projects" },
-    { name: "Fun Facts", path: "/#funfacts" },
-    { name: "GitHub", path: "/#githubstats" },
+    { name: "Fun Facts", path: "/#fun-facts" },
+    { name: "GitHub", path: "/#github-stats" },
     { name: "YouTube", path: "/#youtube" },
     { name: "Achievements", path: "/#achievements" },
     { name: "Contact", path: "/#contact" },
     { name: "Blog", path: "/blog" },
-    { name: "Chatbot", path: "/chatbot" },
+    { name: "AI Gallery", path: "/ai-gallery" },
   ];
 
   return (

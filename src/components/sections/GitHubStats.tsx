@@ -31,7 +31,7 @@ export function GitHubStats() {
   ];
 
   return (
-    <section className="section-container bg-muted/30 dark:bg-muted/5">
+    <section id="github-stats" className="section-container bg-muted/30 dark:bg-muted/5">
       <div className="container page-container">
         <div className="mb-16 text-center">
           <h2 className="section-title text-gradient-primary dark:text-gradient">GitHub Statistics</h2>

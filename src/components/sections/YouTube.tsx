@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Play } from "lucide-react";
+import Lottie from "lottie-react";
+import videoAnimation from "@/assets/animations/video-animation.json";
 
 type Video = {
   id: string;
@@ -30,7 +32,7 @@ export function YouTube() {
   ];
 
   return (
-    <section className="section-container bg-muted/30 dark:bg-muted/5">
+    <section id="youtube" className="section-container bg-muted/30 dark:bg-muted/5">
       <div className="container page-container">
         <div className="mb-16 text-center">
           <h2 className="section-title text-gradient-primary dark:text-gradient">My YouTube Channel</h2>

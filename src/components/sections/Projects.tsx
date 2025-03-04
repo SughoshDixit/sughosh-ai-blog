@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Lottie from "lottie-react";
+import codingAnimation from "@/assets/animations/coding-animation.json";
 
 type Project = {
   id: number;
@@ -77,6 +79,9 @@ export function Projects() {
           <p className="section-subtitle mx-auto">
             Explore my work in data science, machine learning, and web development.
           </p>
+          <div className="max-w-xs mx-auto mb-8">
+            <Lottie animationData={codingAnimation} loop={true} />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
