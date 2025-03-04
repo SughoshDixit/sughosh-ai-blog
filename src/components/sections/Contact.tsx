@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -71,7 +70,7 @@ export function Contact() {
                       <Input
                         id="name"
                         name="name"
-                        placeholder="John Doe"
+                        placeholder="sughoshpdixit@gmail.com"
                         required
                         value={formState.name}
                         onChange={handleChange}
@@ -85,7 +84,7 @@ export function Contact() {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder="sughoshpdixit@gmail.com"
                         required
                         value={formState.email}
                         onChange={handleChange}
