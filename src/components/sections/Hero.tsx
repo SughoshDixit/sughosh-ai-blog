@@ -14,8 +14,8 @@ export function Hero() {
     <div className="min-h-screen flex flex-col justify-center relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-[30%] -right-[10%] w-[80%] h-[80%] rounded-full bg-soft-pink/10 dark:bg-soft-pink/5 blur-3xl animate-spin-slow" />
-        <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-deep-blue/10 dark:bg-deep-blue/5 blur-3xl" />
+        <div className="absolute -top-[30%] -right-[10%] w-[80%] h-[80%] rounded-full bg-soft-pink/5 dark:bg-soft-pink/5 blur-3xl animate-spin-slow" />
+        <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-deep-blue/5 dark:bg-deep-blue/5 blur-3xl" />
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
@@ -46,7 +46,7 @@ export function Hero() {
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
             }`}
           >
-            <Button size="lg" className="font-medium bg-deep-blue hover:bg-deep-blue/90 text-white dark:bg-soft-pink dark:hover:bg-soft-pink/90 dark:text-white">
+            <Button size="lg" className="font-medium bg-deep-blue hover:bg-deep-blue/90 text-white dark:bg-soft-pink dark:hover:bg-soft-pink/90 dark:text-black">
               View My Work
             </Button>
             <Button size="lg" variant="outline" asChild className="border-deep-blue text-deep-blue hover:bg-deep-blue/10 dark:border-soft-pink dark:text-soft-pink dark:hover:bg-soft-pink/10">

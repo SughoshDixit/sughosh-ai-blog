@@ -31,7 +31,7 @@ export function FunFacts() {
   ];
 
   return (
-    <section id="fun-facts" className="section-container bg-soft-pink/10 dark:bg-deep-blue/30">
+    <section id="fun-facts" className="section-container bg-gray-50 dark:bg-black/50">
       <div className="container page-container">
         <div className="mb-16 text-center">
           <h2 className="section-title text-deep-blue dark:text-soft-pink">Beyond Data Science</h2>
@@ -42,10 +42,10 @@ export function FunFacts() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {facts.map((fact) => (
-            <Card key={fact.id} className="glass-card hover-scale transition-all duration-300 border-soft-pink/30 bg-white/90 dark:bg-deep-blue/30 dark:border-soft-pink/20 shadow-lg dark:shadow-soft-pink/5">
+            <Card key={fact.id} className="hover-scale transition-all duration-300 border-gray-200 bg-white dark:bg-black dark:border-gray-800 shadow-lg dark:shadow-soft-pink/5">
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <div className="mb-4 p-3 rounded-full bg-soft-pink/20 dark:bg-soft-pink/10">
+                  <div className="mb-4 p-3 rounded-full bg-gray-100 dark:bg-gray-900">
                     {fact.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-deep-blue dark:text-soft-pink">{fact.title}</h3>
