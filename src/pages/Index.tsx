@@ -30,7 +30,7 @@ const Index = () => {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-deep-blue/90">
+    <div className="min-h-screen flex flex-col bg-background dark:bg-background">
       <SEOHead
         title="Sughosh Dixit | Tech, AI, and Innovation"
         description="Welcome to my personal website. Explore my portfolio, projects, achievements, and insights on technology, AI, and innovative solutions."
