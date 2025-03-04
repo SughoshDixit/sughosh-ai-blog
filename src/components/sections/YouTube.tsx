@@ -17,19 +17,19 @@ export function YouTube() {
       id: "video1",
       title: "Channel Intro: Data Science, Music, Footballer, and Content Creation",
       description: "An introduction to my channel covering my journey through data science, music, football, and content creation.",
-      youtubeId: "dQw4w9WgXcQ" // Replace with actual YouTube ID
+      youtubeId: "rrbSLCis0QY" // Updated with actual YouTube ID
     },
     {
       id: "video2",
       title: "TechJourney Series: My Path to Becoming a Data Scientist",
       description: "Learn about my journey to becoming a data scientist at Oracle and the challenges I overcame along the way.",
-      youtubeId: "KYz2wyBy3kc" // Replace with actual YouTube ID
+      youtubeId: "u1PtafSwvwg" // Updated with actual YouTube ID
     },
     {
       id: "video3",
-      title: "Astronomy Explorations: Night Sky Observations",
-      description: "Join me as I explore the night sky and share fascinating facts about our cosmos and celestial objects.",
-      youtubeId: "V1i_x2_TGE0" // Replace with actual YouTube ID
+      title: "GRADUATED | BITS Pilani | Metaverse M Tech Convocation Ceremony",
+      description: "Join me as I celebrate my graduation from BITS Pilani and experience the metaverse convocation ceremony.",
+      youtubeId: "Cucjb_gGlEY" // Updated with new YouTube ID
     }
   ];
 
