@@ -32,7 +32,7 @@ const AIGalleryPage = () => {
           <div className="container page-container">
             <GalleryHeader />
             
-            {/* Featured Image Preview */}
+            {/* Featured Image - Oracle Redwood UI Style */}
             <div className="mb-10">
               <Card className="overflow-hidden border-0 shadow-lg">
                 <div className="relative">
