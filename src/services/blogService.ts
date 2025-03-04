@@ -1,7 +1,82 @@
+// Updated to use the Python backend API
 
 import { BlogPost, Comment } from "@/types";
 
-// Updated blog posts data with real content
+// Get all blog posts from API
+export const getBlogPosts = async (): Promise<BlogPost[]> => {
+  try {
+    const response = await fetch('http://localhost:5000/api/blog/posts');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching blog posts:", error);
+    return getMockPosts(); // Fallback to mock data if the API fails
+  }
+};
+
+// Get single post by slug
+export const getPostBySlug = async (slug: string): Promise<BlogPost | undefined> => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/blog/posts/${slug}`);
+    
+    if (!response.ok) {
+      if (response.status === 404) {
+        return undefined;
+      }
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching post with slug ${slug}:`, error);
+    return getMockPosts().find(post => post.slug === slug); // Fallback to mock data
+  }
+};
+
+// Get comments for a post
+export const getCommentsByPostId = async (postId: string): Promise<Comment[]> => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/blog/comments/${postId}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching comments for post ${postId}:`, error);
+    // Return mock comments as fallback
+    return [
+      {
+        id: "comment-1",
+        postId: postId,
+        userId: "user-2",
+        userName: "Jane Smith",
+        userAvatar: "https://randomuser.me/api/portraits/women/65.jpg",
+        content: "Great article! I really enjoyed reading your perspective on this topic.",
+        createdAt: "2023-05-16T14:23:00Z",
+      },
+      {
+        id: "comment-2",
+        postId: postId,
+        userId: "user-3",
+        userName: "Mark Wilson",
+        userAvatar: "https://randomuser.me/api/portraits/men/41.jpg",
+        content: "This was very insightful. Looking forward to more posts like this in the future.",
+        createdAt: "2023-05-17T09:45:00Z",
+      },
+    ];
+  }
+};
+
+// Updated mock posts data with real content (kept as fallback)
 export const getMockPosts = (): BlogPost[] => [
   {
     id: "1",
@@ -62,32 +137,5 @@ export const getMockPosts = (): BlogPost[] => [
       name: "Sughosh Dixit",
       avatar: "/lovable-uploads/07f53509-f9a1-4c27-923a-c1cc0bac748b.png",
     },
-  },
-];
-
-// Get single post by slug
-export const getPostBySlug = (slug: string): BlogPost | undefined => {
-  return getMockPosts().find(post => post.slug === slug);
-};
-
-// Mock comments data
-export const getCommentsByPostId = (postId: string): Comment[] => [
-  {
-    id: "comment-1",
-    postId: postId,
-    userId: "user-2",
-    userName: "Jane Smith",
-    userAvatar: "https://randomuser.me/api/portraits/women/65.jpg",
-    content: "Great article! I really enjoyed reading your perspective on this topic.",
-    createdAt: "2023-05-16T14:23:00Z",
-  },
-  {
-    id: "comment-2",
-    postId: postId,
-    userId: "user-3",
-    userName: "Mark Wilson",
-    userAvatar: "https://randomuser.me/api/portraits/men/41.jpg",
-    content: "This was very insightful. Looking forward to more posts like this in the future.",
-    createdAt: "2023-05-17T09:45:00Z",
   },
 ];

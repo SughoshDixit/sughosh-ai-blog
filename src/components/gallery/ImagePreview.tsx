@@ -3,6 +3,7 @@ import { FileImage, FileVideo, X, Crop } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ImageCropper } from "./ImageCropper";
+import { ImageAnalysis } from "./ImageAnalysis";
 
 interface ImagePreviewProps {
   file: File;
@@ -92,6 +93,11 @@ export const ImagePreview = ({
       )}
       
       <p className="mt-2 text-sm truncate">{file.name}</p>
+      
+      {/* Add ML Image Analysis for images */}
+      {fileType === 'image' && preview && (
+        <ImageAnalysis file={file} preview={preview} />
+      )}
     </div>
   );
 };

@@ -18,6 +18,44 @@ export const uploadGalleryItem = async (
   }
 
   try {
+    // Try to use the Python backend first
+    if (process.env.USE_PYTHON_BACKEND === 'true') {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('type', fileType);
+      formData.append('userId', user?.uid || '');
+      
+      // Call progress callback with fake progress values
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += 10;
+        if (progress <= 90) {
+          onProgress?.(progress);
+        } else {
+          clearInterval(progressInterval);
+        }
+      }, 300);
+      
+      const response = await fetch('http://localhost:5000/api/gallery/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      clearInterval(progressInterval);
+      onProgress?.(100);
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Upload failed');
+      }
+      
+      toast.success("Upload complete!");
+      return;
+    }
+    
+    // Fallback to Firebase storage if Python backend is not available
     const storage = getStorage();
     const db = getFirestore();
     
@@ -66,6 +104,30 @@ export const uploadGalleryItem = async (
   } catch (error) {
     console.error("Upload error:", error);
     toast.error("Upload failed. Please try again.");
+    return Promise.reject(error);
+  }
+};
+
+// New function to analyze image with TensorFlow model via Python backend
+export const analyzeImage = async (file: File): Promise<any> => {
+  try {
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    const response = await fetch('http://localhost:5000/api/ml/analyze-image', {
+      method: 'POST',
+      body: formData,
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Image analysis error:", error);
+    toast.error("Failed to analyze image. Please try again.");
     return Promise.reject(error);
   }
 };
