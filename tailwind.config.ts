@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,6 +25,8 @@ export default {
 				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
+				'deep-blue': '#2F3C7E',
+				'soft-pink': '#FBEAEB',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
