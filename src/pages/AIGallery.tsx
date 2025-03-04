@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,19 +8,44 @@ import { Image, Play, Plus, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Lottie from "lottie-react";
 import aiAnimation from "@/assets/animations/ai-animation.json";
+import { ImageUploader } from "@/components/gallery/ImageUploader";
+import { useAuth } from "@/context/AuthContext";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  query, 
+  orderBy, 
+  limit, 
+  startAfter,
+  DocumentData,
+  QueryDocumentSnapshot
+} from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 type GalleryItem = {
-  id: number;
+  id: number | string;
   title: string;
   description: string;
   imageUrl: string;
   type: "image" | "video";
 };
 
+const ADMIN_EMAIL = ""; // Replace with your email in production
+
 const AIGalleryPage = () => {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
+  const [hasMore, setHasMore] = useState(true);
+  const { user } = useAuth();
 
-  const galleryItems: GalleryItem[] = [
+  const isAdmin = !!user && (ADMIN_EMAIL === user.email || ADMIN_EMAIL === "");
+
+  // Static gallery items as fallback
+  const staticGalleryItems: GalleryItem[] = [
     {
       id: 1,
       title: "Late Night Coding",
@@ -114,11 +139,90 @@ const AIGalleryPage = () => {
     }
   ];
 
-  const handleImageLoad = (id: number) => {
+  useEffect(() => {
+    fetchGalleryItems();
+  }, []);
+
+  const fetchGalleryItems = async (fetchMore = false) => {
+    try {
+      setLoading(true);
+      const db = getFirestore();
+      
+      // Create a query
+      let galleryQuery = query(
+        collection(db, "gallery"),
+        orderBy("createdAt", "desc"),
+        limit(12)
+      );
+      
+      // If we're fetching more, start after the last document
+      if (fetchMore && lastDoc) {
+        galleryQuery = query(
+          collection(db, "gallery"),
+          orderBy("createdAt", "desc"),
+          startAfter(lastDoc),
+          limit(12)
+        );
+      }
+      
+      const querySnapshot = await getDocs(galleryQuery);
+      
+      // If no more documents, set hasMore to false
+      if (querySnapshot.empty) {
+        setHasMore(false);
+        
+        // If it's the first fetch and there are no items, use the static items
+        if (!fetchMore) {
+          setGalleryItems(staticGalleryItems);
+        }
+        
+        setLoading(false);
+        return;
+      }
+      
+      // Set the last document for pagination
+      setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
+      
+      // Convert Firestore documents to GalleryItems
+      const items = querySnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          title: data.title || "Untitled",
+          description: data.description || "",
+          imageUrl: data.imageUrl,
+          type: data.type || "image"
+        } as GalleryItem;
+      });
+      
+      // Update the gallery items
+      if (fetchMore) {
+        setGalleryItems(prev => [...prev, ...items]);
+      } else {
+        // If there are no items in Firestore, use the static ones
+        setGalleryItems(items.length > 0 ? items : staticGalleryItems);
+      }
+    } catch (error) {
+      console.error("Error fetching gallery items:", error);
+      // Fallback to static gallery items if there's an error
+      if (!fetchMore) {
+        setGalleryItems(staticGalleryItems);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleImageLoad = (id: number | string) => {
     setLoadedImages(prev => ({
       ...prev,
-      [id]: true
+      [id.toString()]: true
     }));
+  };
+
+  const handleUploadComplete = () => {
+    setIsUploadModalOpen(false);
+    fetchGalleryItems();
   };
 
   return (
@@ -137,6 +241,26 @@ const AIGalleryPage = () => {
               </div>
             </div>
 
+            {/* Upload Section (Only visible to admin) */}
+            {isAdmin && !isUploadModalOpen && (
+              <div className="mb-8 flex justify-center">
+                <Button 
+                  onClick={() => setIsUploadModalOpen(true)}
+                  className="gap-2"
+                  size="lg"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add New Content
+                </Button>
+              </div>
+            )}
+
+            {/* Upload Form */}
+            {isUploadModalOpen && (
+              <ImageUploader onUploadComplete={handleUploadComplete} />
+            )}
+
+            {/* Gallery Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {galleryItems.map((item) => (
                 <Card key={item.id} className="glass-card overflow-hidden hover-scale transition-all duration-300 h-full">
@@ -174,22 +298,18 @@ const AIGalleryPage = () => {
                 </Card>
               ))}
 
-              {/* Add more button */}
-              <Card className="glass-card overflow-hidden border-dashed border-2 hover:border-primary transition-all duration-300 flex items-center justify-center h-full">
-                <CardContent className="p-8 flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <Plus className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="font-medium text-lg mb-2">Add New Creation</h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    Upload your own AI-generated images or videos
-                  </p>
-                  <Button variant="outline" className="gap-2">
-                    <Sparkles className="h-4 w-4" />
-                    <span>Upload</span>
+              {/* Load More Button */}
+              {hasMore && galleryItems.length > 0 && (
+                <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center mt-8">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => fetchGalleryItems(true)}
+                    disabled={loading}
+                  >
+                    {loading ? "Loading..." : "Load More"}
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
+              )}
             </div>
           </div>
         </section>

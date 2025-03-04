@@ -1,6 +1,8 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 /**
  * Firebase Configuration
@@ -15,6 +17,9 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
  *    - VITE_FIREBASE_STORAGE_BUCKET
  *    - VITE_FIREBASE_MESSAGING_SENDER_ID
  *    - VITE_FIREBASE_APP_ID
+ * 4. Enable Firebase Authentication with Google provider
+ * 5. Enable Firestore Database
+ * 6. Enable Storage and set up security rules
  */
 
 // Use mock configuration if environment variables are not available
@@ -31,5 +36,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-export { auth, googleProvider };
+export { auth, googleProvider, db, storage };
