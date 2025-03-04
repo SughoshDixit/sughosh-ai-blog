@@ -109,7 +109,7 @@ const staticGalleryItems: GalleryItem[] = [
 ];
 
 export const useGalleryData = () => {
-  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>(staticGalleryItems);
   const [loading, setLoading] = useState(false);
   const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
   const [hasMore, setHasMore] = useState(true);
@@ -147,6 +147,7 @@ export const useGalleryData = () => {
       if (querySnapshot.empty) {
         setHasMore(false);
         if (!fetchMore) {
+          console.log("No items found in Firebase, using static items");
           setGalleryItems(staticGalleryItems);
         }
         setLoading(false);
@@ -174,6 +175,7 @@ export const useGalleryData = () => {
     } catch (error) {
       console.error("Error fetching gallery items:", error);
       if (!fetchMore) {
+        console.log("Error fetching from Firebase, using static items");
         setGalleryItems(staticGalleryItems);
       }
     } finally {

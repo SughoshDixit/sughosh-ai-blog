@@ -34,6 +34,11 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
     setUploadProgress(0);
   };
 
+  const handleFileUpdate = (updatedFile: File, updatedPreview: string) => {
+    setFile(updatedFile);
+    setPreview(updatedPreview);
+  };
+
   const handleUpload = async () => {
     if (!file || !isAdmin) return;
     if (!title.trim()) return;
@@ -87,6 +92,7 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
             preview={preview}
             fileType={fileType}
             onClear={clearForm}
+            onFileUpdate={handleFileUpdate}
           />
         ) : (
           <FileUploader onFileChange={handleFileChange} disabled={uploading} />
