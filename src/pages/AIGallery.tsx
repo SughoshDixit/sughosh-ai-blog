@@ -97,7 +97,7 @@ const AIGalleryPage = () => {
               <p className="section-subtitle mx-auto">
                 A showcase of my experiments with generative AI for creating images and videos.
               </p>
-              <div className="max-w-xs mx-auto mb-8">
+              <div className="max-w-md mx-auto mb-8">
                 <Lottie animationData={aiAnimation} loop={true} />
               </div>
             </div>

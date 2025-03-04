@@ -13,7 +13,7 @@ export const ChatbotButton = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen && (
-        <Card className="p-6 mb-4 w-72 glass-card animate-scale-in">
+        <Card className="p-6 mb-4 w-80 glass-card animate-scale-in">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-bold text-lg">Chat with Sughosh's AI</h3>
             <Button 
@@ -26,7 +26,7 @@ export const ChatbotButton = () => {
             </Button>
           </div>
           
-          <div className="mb-4 h-32">
+          <div className="mb-4 h-40">
             <Lottie animationData={chatAnimation} loop={true} />
           </div>
           

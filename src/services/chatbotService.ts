@@ -1,5 +1,11 @@
 
 // Define your personal information for the chatbot to reference
+/**
+ * CUSTOMIZATION GUIDE
+ * -------------------
+ * Update the personalInfo object below with your own information.
+ * This will be used by the AI chatbot to answer questions about you.
+ */
 const personalInfo = {
   name: "Sughosh Dixit",
   occupation: "Data Scientist at Oracle",

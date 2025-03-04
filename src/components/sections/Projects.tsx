@@ -79,7 +79,7 @@ export function Projects() {
           <p className="section-subtitle mx-auto">
             Explore my work in data science, machine learning, and web development.
           </p>
-          <div className="max-w-xs mx-auto mb-8">
+          <div className="max-w-md mx-auto mb-8">
             <Lottie animationData={codingAnimation} loop={true} />
           </div>
         </div>
