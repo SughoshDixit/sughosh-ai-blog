@@ -9,29 +9,45 @@ type Video = {
   title: string;
   description: string;
   youtubeId: string;
+  thumbnailUrl?: string;
 };
 
 export function YouTube() {
+  const [loadedThumbnails, setLoadedThumbnails] = useState<Record<string, boolean>>({});
+
   const videos: Video[] = [
     {
       id: "video1",
       title: "Channel Intro: Data Science, Music, Footballer, and Content Creation",
       description: "An introduction to my channel covering my journey through data science, music, football, and content creation.",
-      youtubeId: "rrbSLCis0QY" // Updated with actual YouTube ID
+      youtubeId: "rrbSLCis0QY",
+      thumbnailUrl: "https://img.youtube.com/vi/rrbSLCis0QY/hqdefault.jpg"
     },
     {
       id: "video2",
       title: "TechJourney Series: My Path to Becoming a Data Scientist",
       description: "Learn about my journey to becoming a data scientist at Oracle and the challenges I overcame along the way.",
-      youtubeId: "u1PtafSwvwg" // Updated with actual YouTube ID
+      youtubeId: "u1PtafSwvwg",
+      thumbnailUrl: "https://img.youtube.com/vi/u1PtafSwvwg/hqdefault.jpg"
     },
     {
       id: "video3",
       title: "GRADUATED | BITS Pilani | Metaverse M Tech Convocation Ceremony",
       description: "Join me as I celebrate my graduation from BITS Pilani and experience the metaverse convocation ceremony.",
-      youtubeId: "Cucjb_gGlEY" // Updated with new YouTube ID
+      youtubeId: "Cucjb_gGlEY",
+      thumbnailUrl: "https://img.youtube.com/vi/Cucjb_gGlEY/hqdefault.jpg"
     }
   ];
+
+  const handleThumbnailLoad = (videoId: string) => {
+    setLoadedThumbnails(prev => ({ ...prev, [videoId]: true }));
+  };
+
+  const handleThumbnailError = (videoId: string, event: React.SyntheticEvent<HTMLImageElement>) => {
+    // If the high quality thumbnail fails, try a lower quality one
+    const target = event.target as HTMLImageElement;
+    target.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+  };
 
   return (
     <section id="youtube" className="section-container bg-muted/30 dark:bg-muted/5">
@@ -48,20 +64,23 @@ export function YouTube() {
             <Card key={video.id} className="glass-card overflow-hidden hover-scale transition-all duration-300 flex flex-col border border-primary/20 dark:border-accent/20 shadow-lg dark:shadow-accent/5">
               <div className="aspect-video relative overflow-hidden bg-muted dark:bg-muted/30">
                 <img 
-                  src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                  src={video.thumbnailUrl}
                   alt={video.title}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback to medium quality thumbnail if HD fails
-                    const target = e.target as HTMLImageElement;
-                    target.src = `https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`;
-                  }}
+                  onLoad={() => handleThumbnailLoad(video.id)}
+                  onError={(e) => handleThumbnailError(video.youtubeId, e)}
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors duration-300">
+                <a 
+                  href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors duration-300"
+                >
                   <div className="p-4 rounded-full bg-secondary/90 text-secondary-foreground hover:bg-secondary transition-colors duration-300 cursor-pointer">
                     <Play className="h-8 w-8" />
                   </div>
-                </div>
+                </a>
               </div>
               
               <CardContent className="p-6 flex-grow">
