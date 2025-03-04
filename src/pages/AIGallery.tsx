@@ -31,9 +31,8 @@ const AIGalleryPage = () => {
   const [hasMore, setHasMore] = useState(true);
   const { user } = useAuth();
 
-  const isAdmin = !!user && (ADMIN_EMAIL === user.email || ADMIN_EMAIL === "");
+  const isAdmin = !!user && ADMIN_EMAIL === user.email;
 
-  // Static gallery items as fallback
   const staticGalleryItems: GalleryItem[] = [
     {
       id: 1,
@@ -137,14 +136,12 @@ const AIGalleryPage = () => {
       setLoading(true);
       const db = getFirestore();
       
-      // Create a query
       let galleryQuery = query(
         collection(db, "gallery"),
         orderBy("createdAt", "desc"),
         limit(12)
       );
       
-      // If we're fetching more, start after the last document
       if (fetchMore && lastDoc) {
         galleryQuery = query(
           collection(db, "gallery"),
@@ -156,23 +153,17 @@ const AIGalleryPage = () => {
       
       const querySnapshot = await getDocs(galleryQuery);
       
-      // If no more documents, set hasMore to false
       if (querySnapshot.empty) {
         setHasMore(false);
-        
-        // If it's the first fetch and there are no items, use the static items
         if (!fetchMore) {
           setGalleryItems(staticGalleryItems);
         }
-        
         setLoading(false);
         return;
       }
       
-      // Set the last document for pagination
       setLastDoc(querySnapshot.docs[querySnapshot.docs.length - 1]);
       
-      // Convert Firestore documents to GalleryItems
       const items = querySnapshot.docs.map(doc => {
         const data = doc.data();
         return {
@@ -184,16 +175,13 @@ const AIGalleryPage = () => {
         } as GalleryItem;
       });
       
-      // Update the gallery items
       if (fetchMore) {
         setGalleryItems(prev => [...prev, ...items]);
       } else {
-        // If there are no items in Firestore, use the static ones
         setGalleryItems(items.length > 0 ? items : staticGalleryItems);
       }
     } catch (error) {
       console.error("Error fetching gallery items:", error);
-      // Fallback to static gallery items if there's an error
       if (!fetchMore) {
         setGalleryItems(staticGalleryItems);
       }
@@ -222,7 +210,6 @@ const AIGalleryPage = () => {
           <div className="container page-container">
             <GalleryHeader />
 
-            {/* Upload Section (Only visible to admin) */}
             {isAdmin && !isUploadModalOpen && (
               <div className="mb-8 flex justify-center">
                 <Button 
@@ -236,12 +223,10 @@ const AIGalleryPage = () => {
               </div>
             )}
 
-            {/* Upload Form */}
             {isUploadModalOpen && (
               <ImageUploader onUploadComplete={handleUploadComplete} />
             )}
 
-            {/* Gallery Grid */}
             <GalleryGrid
               items={galleryItems}
               loadedImages={loadedImages}
