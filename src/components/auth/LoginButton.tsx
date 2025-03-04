@@ -42,14 +42,14 @@ export const LoginButton = () => {
           size="sm" 
           onClick={signInWithGoogle}
           disabled={isLoading}
-          className="gap-2"
+          className="gap-1 px-3 py-1"
         >
           {isLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             <LogIn className="h-4 w-4" />
           )}
-          <span>Sign In with Google</span>
+          <span>Sign In</span>
         </Button>
       )}
     </div>

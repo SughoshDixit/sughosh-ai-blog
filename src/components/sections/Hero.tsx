@@ -27,7 +27,7 @@ export function Hero() {
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-6">
               <span className="block text-primary dark:text-primary">Sughosh Dixit</span>
-              <span className="block text-accent dark:text-accent">Data Scientist at Oracle</span>
+              <span className="block text-accent dark:text-accent">AI Enthusiast & Digital Innovator</span>
             </h1>
           </div>
 
