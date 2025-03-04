@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
 
@@ -16,16 +17,16 @@
     --popover: 210 50% 99%;
     --popover-foreground: 224 71% 4%;
 
-    --primary: 220 90% 56%; /* Vibrant blue - high engagement color */
+    --primary: 210 100% 50%; /* Vibrant blue - high engagement & trust */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 262 83% 58%; /* Rich purple - creativity & innovation */
+    --secondary: 187 100% 42%; /* Teal - professional & calming */
     --secondary-foreground: 210 40% 98%;
 
     --muted: 220 14% 96%;
     --muted-foreground: 220 8% 46%;
 
-    --accent: 43 96% 56%; /* Golden accent - calls attention & signals premium */
+    --accent: 32 100% 50%; /* Bright orange - calls-to-action & urgency */
     --accent-foreground: 224 71% 4%;
 
     --destructive: 0 84.2% 60.2%;
@@ -33,18 +34,18 @@
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 220 90% 56%;
+    --ring: 210 100% 50%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 220 14% 97%;
     --sidebar-foreground: 220 8% 46%;
-    --sidebar-primary: 220 90% 56%;
+    --sidebar-primary: 210 100% 50%;
     --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 220 14% 96%;
     --sidebar-accent-foreground: 224 71% 4%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 220 90% 56%;
+    --sidebar-ring: 210 100% 50%;
   }
 
   .dark {
@@ -57,16 +58,16 @@
     --popover: 224 71% 4%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 220 90% 56%; /* Keeping vibrant blue */
+    --primary: 210 100% 50%; /* Keeping vibrant blue */
     --primary-foreground: 210 20% 98%;
 
-    --secondary: 262 83% 58%; /* Rich purple */
+    --secondary: 187 100% 42%; /* Teal */
     --secondary-foreground: 210 20% 98%;
 
     --muted: 220 13% 15%;
     --muted-foreground: 220 10% 70%;
 
-    --accent: 43 96% 56%; /* Golden accent */
+    --accent: 32 100% 50%; /* Bright orange */
     --accent-foreground: 224 71% 4%;
 
     --destructive: 0 62.8% 30.6%;
@@ -74,16 +75,16 @@
 
     --border: 220 13% 15%;
     --input: 220 13% 15%;
-    --ring: 220 90% 56%;
+    --ring: 210 100% 50%;
     
     --sidebar-background: 220 13% 9%;
     --sidebar-foreground: 220 10% 80%;
-    --sidebar-primary: 220 90% 56%;
+    --sidebar-primary: 210 100% 50%;
     --sidebar-primary-foreground: 210 20% 98%;
     --sidebar-accent: 220 13% 15%;
     --sidebar-accent-foreground: 220 10% 80%;
     --sidebar-border: 220 13% 15%;
-    --sidebar-ring: 220 90% 56%;
+    --sidebar-ring: 210 100% 50%;
   }
 }
 
