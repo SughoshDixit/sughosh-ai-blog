@@ -51,7 +51,12 @@ export function Header() {
         <div className="flex items-center justify-between">
           <Link 
             to="/" 
-            className="text-xl font-bold text-foreground transition-all duration-300 hover:opacity-80"
+            className="font-serif italic text-xl font-medium text-foreground transition-all duration-300 hover:opacity-80 transform hover:-rotate-1"
+            style={{ 
+              fontFamily: "'Georgia', serif",
+              textShadow: "0px 1px 1px rgba(0,0,0,0.1)",
+              letterSpacing: "0.5px"
+            }}
           >
             Sughosh Dixit
           </Link>
