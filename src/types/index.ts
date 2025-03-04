@@ -1,4 +1,3 @@
-
 export type BlogPost = {
   id: string;
   title: string;
@@ -37,4 +36,12 @@ export type SocialStats = {
   followers: number;
   engagement: number;
   growth: number;
+};
+
+export type GalleryItem = {
+  id: number | string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  type: "image" | "video";
 };

@@ -1,15 +1,13 @@
-
 import { useState, useEffect } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Image, Play, Plus, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
-import Lottie from "lottie-react";
-import aiAnimation from "@/assets/animations/ai-animation.json";
+import { Plus } from "lucide-react";
 import { ImageUploader } from "@/components/gallery/ImageUploader";
+import { GalleryGrid } from "@/components/gallery/GalleryGrid";
+import { GalleryHeader } from "@/components/gallery/GalleryHeader";
 import { useAuth } from "@/context/AuthContext";
+import { GalleryItem } from "@/types";
 import { 
   getFirestore, 
   collection, 
@@ -21,7 +19,6 @@ import {
   DocumentData,
   QueryDocumentSnapshot
 } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 type GalleryItem = {
   id: number | string;
@@ -231,15 +228,7 @@ const AIGalleryPage = () => {
       <main className="flex-grow pt-24">
         <section className="section-container bg-muted/30">
           <div className="container page-container">
-            <div className="mb-16 text-center">
-              <h1 className="text-4xl font-bold mb-4 text-gradient-primary dark:text-gradient">Personal Gallery</h1>
-              <p className="section-subtitle mx-auto">
-                A showcase of my journey through music, football, and technology.
-              </p>
-              <div className="max-w-md mx-auto mb-8">
-                <Lottie animationData={aiAnimation} loop={true} />
-              </div>
-            </div>
+            <GalleryHeader />
 
             {/* Upload Section (Only visible to admin) */}
             {isAdmin && !isUploadModalOpen && (
@@ -261,56 +250,14 @@ const AIGalleryPage = () => {
             )}
 
             {/* Gallery Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {galleryItems.map((item) => (
-                <Card key={item.id} className="glass-card overflow-hidden hover-scale transition-all duration-300 h-full">
-                  <div className="aspect-video relative overflow-hidden">
-                    <div className="absolute inset-0 bg-muted/40 z-10" />
-                    {item.type === "image" ? (
-                      <img
-                        src={item.imageUrl}
-                        alt={item.title}
-                        className={cn(
-                          "w-full h-full object-cover transition-all duration-700",
-                          loadedImages[item.id] ? "image-blur-loaded" : "image-blur-loading"
-                        )}
-                        onLoad={() => handleImageLoad(item.id)}
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-muted flex items-center justify-center">
-                        <Play className="h-12 w-12 text-primary/70" />
-                      </div>
-                    )}
-                    <div className="absolute top-3 right-3 z-20">
-                      <div className="bg-background/80 backdrop-blur-sm p-1.5 rounded-full">
-                        {item.type === "image" ? (
-                          <Image className="h-4 w-4 text-primary" />
-                        ) : (
-                          <Play className="h-4 w-4 text-primary" />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <CardContent className="p-5">
-                    <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-
-              {/* Load More Button */}
-              {hasMore && galleryItems.length > 0 && (
-                <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center mt-8">
-                  <Button 
-                    variant="outline" 
-                    onClick={() => fetchGalleryItems(true)}
-                    disabled={loading}
-                  >
-                    {loading ? "Loading..." : "Load More"}
-                  </Button>
-                </div>
-              )}
-            </div>
+            <GalleryGrid
+              items={galleryItems}
+              loadedImages={loadedImages}
+              onImageLoad={handleImageLoad}
+              hasMore={hasMore}
+              loading={loading}
+              onLoadMore={() => fetchGalleryItems(true)}
+            />
           </div>
         </section>
       </main>
