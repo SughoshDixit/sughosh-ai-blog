@@ -23,6 +23,7 @@ export default {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
 				display: ['SF Pro Display', 'Inter', 'system-ui', 'sans-serif'],
 				serif: ['Georgia', 'serif'],
+				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
