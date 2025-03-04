@@ -17,7 +17,7 @@ interface AuthContextProps {
   signOut: () => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextProps>({
+export const AuthContext = createContext<AuthContextProps>({
   user: null,
   isAuthenticated: false,
   isLoading: true,
