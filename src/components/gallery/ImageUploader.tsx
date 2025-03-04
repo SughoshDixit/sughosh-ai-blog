@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { Sparkles, Upload } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { FileUploader } from "@/components/gallery/FileUploader";
@@ -12,13 +13,13 @@ interface ImageUploaderProps {
   onUploadComplete: () => void;
 }
 
-// Admin email constant
 const ADMIN_EMAIL = "sughoshpdixit@gmail.com";
 
 export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [fileType, setFileType] = useState<'image' | 'video'>('image');
@@ -30,6 +31,7 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
     setFile(newFile);
     setFileType(newFileType);
     setPreview(newPreview);
+    setUploadProgress(0);
   };
 
   const handleUpload = async () => {
@@ -37,14 +39,19 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
     if (!title.trim()) return;
 
     setUploading(true);
+    setUploadProgress(0);
+    
     try {
-      await uploadGalleryItem(file, title, description, fileType, user);
+      await uploadGalleryItem(file, title, description, fileType, user, (progress) => {
+        setUploadProgress(progress);
+      });
       setUploading(false);
       clearForm();
       onUploadComplete();
     } catch (error) {
       console.error("Upload error:", error);
       setUploading(false);
+      setUploadProgress(0);
     }
   };
 
@@ -53,9 +60,9 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
     setPreview(null);
     setTitle('');
     setDescription('');
+    setUploadProgress(0);
   };
 
-  // If not admin, don't render the component
   if (!isAdmin) return null;
 
   return (
@@ -93,6 +100,15 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
           <Upload className="h-4 w-4" />
           {uploading ? 'Uploading...' : 'Upload'}
         </Button>
+
+        {uploading && (
+          <div className="space-y-2">
+            <Progress value={uploadProgress} className="h-2" />
+            <p className="text-sm text-muted-foreground text-center">
+              {Math.round(uploadProgress)}% uploaded
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

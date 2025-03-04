@@ -9,7 +9,8 @@ export const uploadGalleryItem = async (
   title: string,
   description: string,
   fileType: 'image' | 'video',
-  user: User | null
+  user: User | null,
+  onProgress?: (progress: number) => void
 ): Promise<void> => {
   if (!title.trim()) {
     toast.error("Please add a title for your upload");
@@ -17,24 +18,22 @@ export const uploadGalleryItem = async (
   }
 
   try {
-    // Initialize Firebase storage
     const storage = getStorage();
     const db = getFirestore();
     
-    // Create a unique filename
     const timestamp = new Date().getTime();
     const fileExtension = file.name.split('.').pop();
     const fileName = `${timestamp}-${file.name}`;
     const storagePath = `gallery/${fileName}`;
     
-    // Upload to Firebase Storage
     const storageRef = ref(storage, storagePath);
     const uploadTask = uploadBytesResumable(storageRef, file);
     
     return new Promise((resolve, reject) => {
       uploadTask.on('state_changed', 
         (snapshot) => {
-          // You can add progress tracking here if needed
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          onProgress?.(progress);
         }, 
         (error) => {
           console.error("Upload error:", error);
@@ -43,10 +42,8 @@ export const uploadGalleryItem = async (
         }, 
         async () => {
           try {
-            // Get download URL
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
             
-            // Save entry to Firestore
             await addDoc(collection(db, "gallery"), {
               title,
               description,
