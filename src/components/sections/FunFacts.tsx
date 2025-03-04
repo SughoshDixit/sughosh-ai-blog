@@ -31,25 +31,25 @@ export function FunFacts() {
   ];
 
   return (
-    <section id="fun-facts" className="section-container bg-background/50 dark:bg-muted/10">
+    <section id="fun-facts" className="section-container bg-soft-pink/10 dark:bg-deep-blue/30">
       <div className="container page-container">
         <div className="mb-16 text-center">
-          <h2 className="section-title text-gradient-primary dark:text-gradient">Beyond Data Science</h2>
-          <p className="section-subtitle mx-auto text-muted-foreground">
+          <h2 className="section-title text-deep-blue dark:text-soft-pink">Beyond Data Science</h2>
+          <p className="section-subtitle mx-auto text-deep-blue/70 dark:text-soft-pink/70">
             A glimpse into my personal passions and interests outside of professional work.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {facts.map((fact) => (
-            <Card key={fact.id} className="glass-card hover-scale transition-all duration-300 border border-primary/20 dark:border-accent/20 shadow-lg dark:shadow-accent/5">
+            <Card key={fact.id} className="glass-card hover-scale transition-all duration-300 border-soft-pink/30 bg-white/90 dark:bg-deep-blue/30 dark:border-soft-pink/20 shadow-lg dark:shadow-soft-pink/5">
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <div className="mb-4 p-3 rounded-full bg-primary/10 dark:bg-accent/10">
+                  <div className="mb-4 p-3 rounded-full bg-soft-pink/20 dark:bg-soft-pink/10">
                     {fact.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-foreground">{fact.title}</h3>
-                  <p className="text-muted-foreground">{fact.description}</p>
+                  <h3 className="text-xl font-bold mb-2 text-deep-blue dark:text-soft-pink">{fact.title}</h3>
+                  <p className="text-deep-blue/70 dark:text-soft-pink/70">{fact.description}</p>
                 </div>
               </CardContent>
             </Card>

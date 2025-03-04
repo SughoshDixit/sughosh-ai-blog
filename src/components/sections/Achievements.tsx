@@ -50,18 +50,18 @@ export function Achievements() {
   ];
 
   return (
-    <section id="achievements" className="section-container">
+    <section id="achievements" className="section-container bg-soft-pink/5 dark:bg-deep-blue/10">
       <div className="container page-container">
         <div className="mb-16 text-center">
-          <h2 className="section-title">Achievements</h2>
-          <p className="section-subtitle mx-auto">
+          <h2 className="section-title text-deep-blue dark:text-soft-pink">Achievements</h2>
+          <p className="section-subtitle mx-auto text-deep-blue/70 dark:text-soft-pink/70">
             Hackathons and recognition from my professional journey.
           </p>
         </div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-border" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-soft-pink/30 dark:bg-soft-pink/20" />
 
           <div className="space-y-12">
             {achievements.map((achievement, index) => (
@@ -72,20 +72,20 @@ export function Achievements() {
                 }`}
               >
                 {/* Timeline point */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-background border-4 border-primary flex items-center justify-center z-10">
-                  <span className="font-bold text-sm">{achievement.year}</span>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-white dark:bg-deep-blue border-4 border-deep-blue dark:border-soft-pink flex items-center justify-center z-10">
+                  <span className="font-bold text-sm text-deep-blue dark:text-soft-pink">{achievement.year}</span>
                 </div>
                 
                 <div className="w-full md:w-[45%] px-4 md:px-0">
-                  <Card className="glass-card hover-scale overflow-hidden shadow-md">
+                  <Card className="glass-card hover-scale overflow-hidden shadow-md border-soft-pink/30 bg-white/90 dark:bg-deep-blue/30 dark:border-soft-pink/20">
                     <CardContent className="p-6">
                       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                        <div className="p-3 rounded-lg bg-primary/10">
+                        <div className="p-3 rounded-lg bg-soft-pink/20 dark:bg-soft-pink/10">
                           {achievement.icon}
                         </div>
                         <div>
-                          <h3 className="font-bold text-xl mb-2">{achievement.title}</h3>
-                          <p className="text-muted-foreground">{achievement.description}</p>
+                          <h3 className="font-bold text-xl mb-2 text-deep-blue dark:text-soft-pink">{achievement.title}</h3>
+                          <p className="text-deep-blue/70 dark:text-soft-pink/70">{achievement.description}</p>
                         </div>
                       </div>
                     </CardContent>

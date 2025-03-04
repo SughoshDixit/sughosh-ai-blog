@@ -19,7 +19,7 @@ const AIGalleryPage = () => {
   } = useGalleryData();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-deep-blue/90">
       <SEOHead
         title="AI Gallery | Sughosh Dixit"
         description="Explore my personal gallery showcasing AI-generated art, creative projects, and visual experiments in music, football, and technology."
@@ -28,7 +28,7 @@ const AIGalleryPage = () => {
       />
       <Header />
       <main className="flex-grow pt-24">
-        <section className="section-container bg-muted/30">
+        <section className="section-container gallery-bg">
           <div className="container page-container">
             <GalleryHeader />
             
@@ -36,15 +36,15 @@ const AIGalleryPage = () => {
             <div className="mb-10">
               <Card className="overflow-hidden border-0 shadow-lg">
                 <div className="relative">
-                  <div className="max-h-[500px] flex justify-center bg-black/5">
+                  <div className="max-h-[500px] flex justify-center bg-soft-pink/5 dark:bg-deep-blue/50">
                     <img 
                       src="/lovable-uploads/b007e0ae-455f-476f-939e-8b0f83230810.png" 
                       alt="AI Gallery Featured Image"
                       className="max-h-[500px] w-auto object-contain"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                    <div className="p-6 text-white">
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/60 to-transparent dark:from-black/60 flex items-end">
+                    <div className="p-6 text-soft-pink">
                       <h3 className="text-xl font-bold">Adventures in Aviation</h3>
                       <p className="text-sm opacity-80">Exploring new heights and destinations through helicopter travel</p>
                     </div>

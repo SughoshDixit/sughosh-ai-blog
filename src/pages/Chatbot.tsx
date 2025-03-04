@@ -76,14 +76,14 @@ const ChatbotPage = () => {
   }, [messages]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white dark:bg-deep-blue/90">
       <Header />
       
       <main className="pt-24 pb-16 container">
-        <h1 className="text-3xl font-bold mb-8 text-center">Chat with Sughosh's AI Assistant</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center text-deep-blue dark:text-soft-pink">Chat with Sughosh's AI Assistant</h1>
         
         {isAuthenticated ? (
-          <Card className="mx-auto max-w-3xl h-[70vh] flex flex-col shadow-lg border">
+          <Card className="mx-auto max-w-3xl h-[70vh] flex flex-col shadow-lg border border-soft-pink/30 dark:border-soft-pink/20 bg-white/90 dark:bg-deep-blue/30">
             {/* Chat messages */}
             <div className="flex-1 overflow-y-auto p-4">
               {messages.map((message) => (
@@ -105,12 +105,12 @@ const ChatbotPage = () => {
           </Card>
         ) : (
           <div className="text-center py-16 max-w-md mx-auto">
-            <MessageSquareText className="h-16 w-16 mx-auto mb-4 text-primary" />
-            <h2 className="text-2xl font-bold mb-2">Sign in to Chat</h2>
-            <p className="text-muted-foreground mb-6">
+            <MessageSquareText className="h-16 w-16 mx-auto mb-4 text-deep-blue dark:text-soft-pink" />
+            <h2 className="text-2xl font-bold mb-2 text-deep-blue dark:text-soft-pink">Sign in to Chat</h2>
+            <p className="text-deep-blue/70 dark:text-soft-pink/70 mb-6">
               Sign in with your Google account to start chatting with Sughosh's AI assistant.
             </p>
-            <Button onClick={signInWithGoogle} size="lg">
+            <Button onClick={signInWithGoogle} size="lg" className="bg-deep-blue hover:bg-deep-blue/90 text-soft-pink dark:bg-soft-pink dark:hover:bg-soft-pink/90 dark:text-deep-blue">
               Sign in with Google
             </Button>
           </div>

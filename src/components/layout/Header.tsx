@@ -90,7 +90,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             <Link 
               to="/" 
-              className="text-xl text-foreground transition-all duration-300 hover:opacity-80 transform hover:-rotate-1"
+              className="text-xl text-deep-blue dark:text-soft-pink transition-all duration-300 hover:opacity-80 transform hover:-rotate-1"
               style={{ 
                 fontFamily: "'Dancing Script', cursive",
                 textShadow: "0px 1px 2px rgba(0,0,0,0.15)",
@@ -109,11 +109,11 @@ export function Header() {
                   to={item.path}
                   className={cn(
                     "text-sm font-medium transition-all duration-300",
-                    "relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[2px] after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:duration-300 after:bg-primary",
+                    "relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[2px] after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:duration-300 after:bg-deep-blue dark:after:bg-soft-pink",
                     location.pathname === item.path || 
                     (location.pathname === '/' && item.path.startsWith('/#'))
-                      ? "text-foreground after:scale-x-100 after:origin-bottom-left"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-deep-blue dark:text-soft-pink after:scale-x-100 after:origin-bottom-left"
+                      : "text-deep-blue/70 dark:text-soft-pink/70 hover:text-deep-blue dark:hover:text-soft-pink"
                   )}
                   aria-current={location.pathname === item.path ? "page" : undefined}
                 >
@@ -130,7 +130,7 @@ export function Header() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="md:hidden" 
+                className="md:hidden text-deep-blue dark:text-soft-pink" 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -150,7 +150,7 @@ export function Header() {
           {isMobileMenuOpen && (
             <div 
               id="mobile-menu"
-              className="md:hidden glass-card mt-4 p-4 animate-scale-in"
+              className="md:hidden glass-card mt-4 p-4 animate-scale-in bg-white/90 dark:bg-deep-blue/90 border border-soft-pink/30 dark:border-soft-pink/10"
               role="navigation"
               aria-label="Mobile Navigation"
             >
@@ -163,8 +163,8 @@ export function Header() {
                       "text-base font-medium px-3 py-2 rounded-md transition-all duration-200",
                       location.pathname === item.path || 
                       (location.pathname === '/' && item.path.startsWith('/#'))
-                        ? "bg-primary/10 text-primary"
-                        : "text-foreground hover:bg-muted"
+                        ? "bg-soft-pink/20 dark:bg-soft-pink/10 text-deep-blue dark:text-soft-pink"
+                        : "text-deep-blue/80 dark:text-soft-pink/80 hover:bg-soft-pink/10 dark:hover:bg-soft-pink/5 hover:text-deep-blue dark:hover:text-soft-pink"
                     )}
                     aria-current={location.pathname === item.path ? "page" : undefined}
                   >
