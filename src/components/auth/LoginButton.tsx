@@ -1,10 +1,10 @@
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
-import { LogIn, LogOut } from "lucide-react";
+import { LogIn, LogOut, Loader2 } from "lucide-react";
 
 export const LoginButton = () => {
-  const { user, isAuthenticated, signInWithGoogle, signOut } = useAuth();
+  const { user, isAuthenticated, isLoading, signInWithGoogle, signOut } = useAuth();
 
   return (
     <div className="flex items-center gap-2">
@@ -25,9 +25,14 @@ export const LoginButton = () => {
             variant="outline" 
             size="sm" 
             onClick={signOut}
+            disabled={isLoading}
             className="gap-2"
           >
-            <LogOut className="h-4 w-4" />
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <LogOut className="h-4 w-4" />
+            )}
             <span className="hidden md:inline">Sign Out</span>
           </Button>
         </div>
@@ -36,9 +41,14 @@ export const LoginButton = () => {
           variant="default" 
           size="sm" 
           onClick={signInWithGoogle}
+          disabled={isLoading}
           className="gap-2"
         >
-          <LogIn className="h-4 w-4" />
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <LogIn className="h-4 w-4" />
+          )}
           <span>Sign In with Google</span>
         </Button>
       )}

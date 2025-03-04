@@ -4,25 +4,25 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-/**
- * Firebase Configuration
- * 
- * This uses environment variables for Firebase configuration.
- * For development, you can use the mock values.
- */
-
-// Firebase configuration
+// Firebase configuration - using the demo project credentials
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyBGOVbCqkiA55Kl2YSHpnV7U8jPQ9WMmLw",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "lovable-portfolio-demo.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "lovable-portfolio-demo",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "lovable-portfolio-demo.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "339618312966",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:339618312966:web:cc4fe5afefe31a2df56c48"
+  apiKey: "AIzaSyBGOVbCqkiA55Kl2YSHpnV7U8jPQ9WMmLw",
+  authDomain: "lovable-portfolio-demo.firebaseapp.com",
+  projectId: "lovable-portfolio-demo",
+  storageBucket: "lovable-portfolio-demo.appspot.com",
+  messagingSenderId: "339618312966",
+  appId: "1:339618312966:web:cc4fe5afefe31a2df56c48"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// To prevent the "Firebase App named '[DEFAULT]' already exists" error
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+} catch (error) {
+  // If the app is already initialized, use the existing one
+  app = initializeApp();
+}
+
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 // Configure Google Auth Provider for better user experience
