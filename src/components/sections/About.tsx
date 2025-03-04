@@ -38,10 +38,10 @@ export function About() {
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] hover-scale shadow-xl">
               <div className="absolute inset-0 bg-primary/10 rounded-2xl" />
-              {/* Replace image with embedded video */}
+              {/* Embedded video with autoplay */}
               <iframe
-                src="https://drive.google.com/file/d/1TGtD21UDdki5dBU_EtWCeWFQ4Gf70lzl/preview"
-                allow="autoplay"
+                src="https://drive.google.com/file/d/1TGtD21UDdki5dBU_EtWCeWFQ4Gf70lzl/preview?autoplay=1"
+                allow="autoplay; fullscreen"
                 className="w-full h-full"
                 style={{ border: 0 }}
                 allowFullScreen
