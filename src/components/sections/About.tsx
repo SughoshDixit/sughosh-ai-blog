@@ -38,41 +38,12 @@ export function About() {
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] hover-scale shadow-xl">
               <div className="absolute inset-0 bg-primary/10 rounded-2xl" />
-              {/* Embedded video with fixed autoplay */}
-              <iframe
-                src="https://drive.google.com/file/d/1TGtD21UDdki5dBU_EtWCeWFQ4Gf70lzl/preview"
-                allow="autoplay; fullscreen"
-                className="w-full h-full"
-                style={{ border: 0 }}
-                allowFullScreen
-                id="about-video"
-              ></iframe>
+              <img 
+                src="/public/lovable-uploads/781efdab-8f9e-48ba-bb81-319419a0eb96.png" 
+                alt="Football player in red jersey celebrating" 
+                className="w-full h-full object-cover"
+              />
             </div>
-            
-            {/* Autoplay script */}
-            <script dangerouslySetInnerHTML={{
-              __html: `
-                window.addEventListener('DOMContentLoaded', (event) => {
-                  const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                      if (entry.isIntersecting) {
-                        const iframe = document.getElementById('about-video');
-                        if (iframe && iframe.src) {
-                          iframe.src = iframe.src.includes('?') 
-                            ? iframe.src + '&autoplay=1&mute=1' 
-                            : iframe.src + '?autoplay=1&mute=1';
-                        }
-                      }
-                    });
-                  }, { threshold: 0.5 });
-
-                  const videoContainer = document.getElementById('about-video');
-                  if (videoContainer) {
-                    observer.observe(videoContainer);
-                  }
-                });
-              `
-            }} />
             
             {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-2xl -z-10 hidden lg:block" />
