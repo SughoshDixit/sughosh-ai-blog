@@ -23,58 +23,93 @@ const AIGalleryPage = () => {
   const galleryItems: GalleryItem[] = [
     {
       id: 1,
-      title: "Neural Style Transfer",
-      description: "An experiment with neural style transfer to create artwork inspired by famous painters.",
-      imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
+      title: "Late Night Coding",
+      description: "Focused on developing innovative solutions in the late hours.",
+      imageUrl: "/lovable-uploads/bdc0862d-de04-41e0-8b17-a90996eef7dd.png",
       type: "image"
     },
     {
       id: 2,
-      title: "AI-Generated Landscapes",
-      description: "Beautiful landscape imagery created using stable diffusion models.",
-      imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      title: "Musical Performance",
+      description: "Performing with acoustic guitar at a live concert venue.",
+      imageUrl: "/lovable-uploads/459b4b49-b54b-4497-b3f3-5ea33aee1ae8.png",
       type: "image"
     },
     {
       id: 3,
-      title: "Text-to-Image Creations",
-      description: "Artwork generated from text prompts using DALL-E and Midjourney.",
-      imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      title: "Fashion Forward",
+      description: "Style meets sophistication at a fashion event.",
+      imageUrl: "/lovable-uploads/0e9a2962-aee6-448d-9ccc-7992f5bf765b.png",
       type: "image"
     },
     {
       id: 4,
-      title: "AI-Enhanced Photography",
-      description: "Real photos enhanced and transformed with generative AI techniques.",
-      imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      title: "Live Performance",
+      description: "On stage with keyboard and vocals, creating musical magic.",
+      imageUrl: "/lovable-uploads/558ad19c-1140-4b4b-84ae-2e07abc1e9a3.png",
       type: "image"
     },
     {
       id: 5,
-      title: "Generative Art Pieces",
-      description: "Abstract art pieces created with generative adversarial networks.",
-      imageUrl: "https://images.unsplash.com/photo-1557682250-33bd709cbe85",
+      title: "Stage Presence",
+      description: "Engaging with the audience during a live musical performance.",
+      imageUrl: "/lovable-uploads/2e34de0b-d574-4669-b221-6c2a7f1a5243.png",
       type: "image"
     },
     {
       id: 6,
-      title: "AI Music Visualizations",
-      description: "Visual representations of AI-generated music compositions.",
-      imageUrl: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d",
+      title: "Artist Portrait",
+      description: "Artistic promotional shot with vibrant background design.",
+      imageUrl: "/lovable-uploads/8fd7efd1-9f2a-4211-8a0b-c349e58ea802.png",
       type: "image"
     },
     {
       id: 7,
-      title: "Facial Reconstruction",
-      description: "AI-powered facial reconstruction from partial or damaged images.",
-      imageUrl: "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f",
+      title: "Concert Performance",
+      description: "Live music performance with guitar and vocals.",
+      imageUrl: "/lovable-uploads/a2fdcdcf-f6af-4a46-8736-d7bdfb6a31e7.png",
       type: "image"
     },
     {
       id: 8,
-      title: "Dream Visualizations",
-      description: "Visual representations of described dreams using text-to-image models.",
-      imageUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401",
+      title: "Football Training",
+      description: "Professional football practice at Real Madrid's stadium.",
+      imageUrl: "/lovable-uploads/8e4fef83-79c2-412a-97ad-0ed0a145e47d.png",
+      type: "image"
+    },
+    {
+      id: 9,
+      title: "Match Day",
+      description: "Action shot during a competitive football match.",
+      imageUrl: "/lovable-uploads/79623cf2-e704-4f84-999d-023a5da062dc.png",
+      type: "image"
+    },
+    {
+      id: 10,
+      title: "Field Position",
+      description: "Ready for action on the football pitch.",
+      imageUrl: "/lovable-uploads/cb1b0553-1397-425c-92b8-e48a67b68c40.png",
+      type: "image"
+    },
+    {
+      id: 11,
+      title: "Pre-Match",
+      description: "Preparing for kickoff at the stadium.",
+      imageUrl: "/lovable-uploads/1ae3f1e2-68e7-43cc-926e-ee93ce4e105b.png",
+      type: "image"
+    },
+    {
+      id: 12,
+      title: "Game Control",
+      description: "Demonstrating ball control during match play.",
+      imageUrl: "/lovable-uploads/81b84bf6-3225-4a1b-9032-3d6b939ce294.png",
+      type: "image"
+    },
+    {
+      id: 13,
+      title: "Match Skills",
+      description: "Showcasing technical abilities on the pitch.",
+      imageUrl: "/lovable-uploads/b109308a-387d-4291-9f6e-0149a2ad2e37.png",
       type: "image"
     }
   ];
@@ -93,9 +128,9 @@ const AIGalleryPage = () => {
         <section className="section-container bg-muted/30">
           <div className="container page-container">
             <div className="mb-16 text-center">
-              <h1 className="text-4xl font-bold mb-4 text-gradient-primary dark:text-gradient">AI Gallery</h1>
+              <h1 className="text-4xl font-bold mb-4 text-gradient-primary dark:text-gradient">Personal Gallery</h1>
               <p className="section-subtitle mx-auto">
-                A showcase of my experiments with generative AI for creating images and videos.
+                A showcase of my journey through music, football, and technology.
               </p>
               <div className="max-w-md mx-auto mb-8">
                 <Lottie animationData={aiAnimation} loop={true} />
