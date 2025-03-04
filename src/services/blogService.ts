@@ -26,6 +26,7 @@ export const getMockPosts = (): BlogPost[] => [
     coverImage: "https://images.unsplash.com/photo-1598091383060-24f83fdc7296",
     category: "Culture & Heritage",
     publishedAt: "2023-08-15T14:20:00Z",
+    updatedAt: "2023-09-02T10:15:00Z",
     likes: 127,
     author: {
       name: "Sughosh Dixit",
@@ -55,6 +56,7 @@ export const getMockPosts = (): BlogPost[] => [
     coverImage: "https://images.unsplash.com/photo-1623607915902-d28d86ade6ee",
     category: "Sports",
     publishedAt: "2022-06-20T09:30:00Z",
+    updatedAt: "2022-07-15T14:45:00Z",
     likes: 89,
     author: {
       name: "Sughosh Dixit",

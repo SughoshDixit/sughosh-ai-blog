@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
@@ -159,7 +158,7 @@ const BlogPostPage = () => {
       "url": `https://sughoshdixit.com/blog/${post.slug}`,
       "datePublished": formatISODate(post.publishedAt),
       "dateCreated": formatISODate(post.publishedAt),
-      "dateModified": formatISODate(post.updatedAt || post.publishedAt),
+      "dateModified": post.updatedAt ? formatISODate(post.updatedAt) : formatISODate(post.publishedAt),
       "description": post.excerpt,
       "author": {
         "@type": "Person",
