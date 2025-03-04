@@ -73,8 +73,8 @@ const staticGalleryItems: GalleryItem[] = [
   },
   {
     id: 9,
-    title: "Match Day",
-    description: "Action shot during a competitive football match.",
+    title: "Concert Headliner",
+    description: "Delivering an energetic vocal performance at a major concert venue.",
     imageUrl: "/lovable-uploads/79623cf2-e704-4f84-999d-023a5da062dc.png",
     type: "image"
   },
