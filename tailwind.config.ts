@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,9 +26,9 @@ export default {
 				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
-				'deep-blue': '#8B5CF6',
-				'soft-pink': '#D946EF',
-				'accent-gold': '#F59E0B',
+				'deep-blue': '#2055be',  // Rich blue
+				'soft-blue': '#1a9ca8',  // Teal blue
+				'accent-gold': '#F59E0B', // Keeping the gold accent
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

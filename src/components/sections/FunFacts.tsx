@@ -12,7 +12,7 @@ export function FunFacts() {
     },
     {
       id: 2,
-      icon: <MusicIcon className="h-10 w-10 text-soft-pink" />,
+      icon: <MusicIcon className="h-10 w-10 text-soft-blue" />,
       title: "Music Lover",
       description: "Music is my creative outlet. I enjoy both playing and composing, finding harmony in melodies that tell stories without words."
     },
@@ -31,25 +31,25 @@ export function FunFacts() {
   ];
 
   return (
-    <section id="fun-facts" className="section-container bg-gray-50 dark:bg-black/50">
+    <section id="fun-facts" className="section-container bg-muted dark:bg-muted/30">
       <div className="container page-container">
         <div className="mb-16 text-center">
-          <h2 className="section-title text-deep-blue dark:text-soft-pink">Beyond Data Science</h2>
-          <p className="section-subtitle mx-auto text-deep-blue/70 dark:text-soft-pink/70">
+          <h2 className="section-title text-deep-blue dark:text-soft-blue">Beyond Data Science</h2>
+          <p className="section-subtitle mx-auto text-deep-blue/70 dark:text-soft-blue/70">
             A glimpse into my personal passions and interests outside of professional work.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {facts.map((fact) => (
-            <Card key={fact.id} className="hover-scale transition-all duration-300 border-gray-200 bg-white dark:bg-black dark:border-gray-800 shadow-lg dark:shadow-soft-pink/5">
+            <Card key={fact.id} className="hover-scale transition-all duration-300 border-gray-200 bg-white dark:bg-card dark:border-muted shadow-lg dark:shadow-soft-blue/5">
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center">
-                  <div className="mb-4 p-3 rounded-full bg-gray-100 dark:bg-gray-900">
+                  <div className="mb-4 p-3 rounded-full bg-muted dark:bg-muted/50">
                     {fact.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-deep-blue dark:text-soft-pink">{fact.title}</h3>
-                  <p className="text-deep-blue/70 dark:text-soft-pink/70">{fact.description}</p>
+                  <h3 className="text-xl font-bold mb-2 text-deep-blue dark:text-soft-blue">{fact.title}</h3>
+                  <p className="text-deep-blue/70 dark:text-soft-blue/70">{fact.description}</p>
                 </div>
               </CardContent>
             </Card>

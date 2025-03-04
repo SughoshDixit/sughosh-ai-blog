@@ -8,7 +8,7 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <div className="min-h-screen bg-white text-deep-blue dark:bg-black dark:text-white transition-colors duration-300">
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <App />
       </div>
     </ThemeProvider>
