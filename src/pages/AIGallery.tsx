@@ -28,16 +28,16 @@ const AIGalleryPage = () => {
             {/* Featured Image Preview */}
             <div className="mb-10">
               <Card className="overflow-hidden border-0 shadow-lg">
-                <div className="aspect-[4/5] md:aspect-[16/9] relative">
+                <div className="aspect-[3/4] md:aspect-[16/9] relative">
                   <img 
-                    src="/lovable-uploads/b4deee10-cd86-4042-8ab9-ea4521539f75.png" 
+                    src="/lovable-uploads/b007e0ae-455f-476f-939e-8b0f83230810.png" 
                     alt="AI Gallery Featured Image"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                     <div className="p-6 text-white">
-                      <h3 className="text-xl font-bold">My Journey with AI</h3>
-                      <p className="text-sm opacity-80">Exploring the world through the lens of artificial intelligence</p>
+                      <h3 className="text-xl font-bold">Adventures in Aviation</h3>
+                      <p className="text-sm opacity-80">Exploring new heights and destinations through helicopter travel</p>
                     </div>
                   </div>
                 </div>
