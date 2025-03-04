@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Header } from "@/components/layout/Header";
@@ -33,18 +34,44 @@ const BlogPostPage = () => {
   useEffect(() => {
     if (!slug) return;
     
-    // Simulate API call with delay
-    const timer = setTimeout(() => {
-      const fetchedPost = getPostBySlug(slug);
-      if (fetchedPost) {
-        setPost(fetchedPost);
-        setLikeCount(fetchedPost.likes);
-        setComments(getCommentsByPostId(fetchedPost.id));
+    // Flag to handle component unmounting
+    let isMounted = true;
+    
+    const fetchData = async () => {
+      try {
+        // Fetch post data
+        const fetchedPost = await getPostBySlug(slug);
+        
+        // Only update state if component is still mounted
+        if (isMounted && fetchedPost) {
+          setPost(fetchedPost);
+          setLikeCount(fetchedPost.likes);
+          
+          // Now fetch comments with the post ID
+          const fetchedComments = await getCommentsByPostId(fetchedPost.id);
+          if (isMounted) {
+            setComments(fetchedComments);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
-      setIsLoading(false);
+    };
+
+    // Add a small delay to simulate loading (can be removed in production)
+    const timer = setTimeout(() => {
+      fetchData();
     }, 1000);
 
-    return () => clearTimeout(timer);
+    // Cleanup function
+    return () => {
+      clearTimeout(timer);
+      isMounted = false;
+    };
   }, [slug]);
 
   const handleLike = () => {
