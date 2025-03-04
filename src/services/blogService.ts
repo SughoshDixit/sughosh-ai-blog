@@ -29,7 +29,7 @@ export const getMockPosts = (): BlogPost[] => [
     likes: 127,
     author: {
       name: "Sughosh Dixit",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      avatar: "/lovable-uploads/07f53509-f9a1-4c27-923a-c1cc0bac748b.png",
     },
   },
   {
@@ -58,7 +58,7 @@ export const getMockPosts = (): BlogPost[] => [
     likes: 89,
     author: {
       name: "Sughosh Dixit",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      avatar: "/lovable-uploads/07f53509-f9a1-4c27-923a-c1cc0bac748b.png",
     },
   },
 ];
