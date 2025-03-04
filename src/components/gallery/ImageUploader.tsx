@@ -1,17 +1,19 @@
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { Sparkles, Upload, X, FileImage, FileVideo } from "lucide-react";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { Sparkles, Upload } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
-import { cn } from "@/lib/utils";
+import { FileUploader } from "@/components/gallery/FileUploader";
+import { ImagePreview } from "@/components/gallery/ImagePreview";
+import { UploadForm } from "@/components/gallery/UploadForm";
+import { uploadGalleryItem } from "@/services/galleryService";
 
 interface ImageUploaderProps {
   onUploadComplete: () => void;
 }
+
+// Admin email constant
+const ADMIN_EMAIL = "sughoshpdixit@gmail.com";
 
 export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
   const [file, setFile] = useState<File | null>(null);
@@ -20,103 +22,37 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [fileType, setFileType] = useState<'image' | 'video'>('image');
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const { user } = useAuth();
-
-  // Admin email - set to your email
-  const ADMIN_EMAIL = "sughoshpdixit@gmail.com";
 
   const isAdmin = !!user && ADMIN_EMAIL === user.email;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (!selectedFile) return;
-
-    // Check if it's an image or video
-    const type = selectedFile.type.startsWith('image/') ? 'image' : 'video';
-    setFileType(type);
-    setFile(selectedFile);
-
-    // Create preview for images
-    if (type === 'image') {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setPreview(reader.result as string);
-      };
-      reader.readAsDataURL(selectedFile);
-    } else {
-      // For videos, we just show a placeholder
-      setPreview(null);
-    }
-  };
-
-  const clearFile = () => {
-    setFile(null);
-    setPreview(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
+  const handleFileChange = (newFile: File | null, newFileType: 'image' | 'video', newPreview: string | null) => {
+    setFile(newFile);
+    setFileType(newFileType);
+    setPreview(newPreview);
   };
 
   const handleUpload = async () => {
     if (!file || !isAdmin) return;
-    if (!title.trim()) {
-      toast.error("Please add a title for your upload");
-      return;
-    }
+    if (!title.trim()) return;
 
     setUploading(true);
     try {
-      // Initialize Firebase storage
-      const storage = getStorage();
-      const db = getFirestore();
-      
-      // Create a unique filename
-      const timestamp = new Date().getTime();
-      const fileExtension = file.name.split('.').pop();
-      const fileName = `${timestamp}-${file.name}`;
-      const storagePath = `gallery/${fileName}`;
-      
-      // Upload to Firebase Storage
-      const storageRef = ref(storage, storagePath);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      
-      uploadTask.on('state_changed', 
-        (snapshot) => {
-          // You can add progress tracking here if needed
-        }, 
-        (error) => {
-          console.error("Upload error:", error);
-          toast.error("Upload failed. Please try again.");
-          setUploading(false);
-        }, 
-        async () => {
-          // Get download URL
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          
-          // Save entry to Firestore
-          await addDoc(collection(db, "gallery"), {
-            title,
-            description,
-            imageUrl: downloadURL,
-            type: fileType,
-            createdAt: serverTimestamp(),
-            createdBy: user?.uid
-          });
-          
-          toast.success("Upload complete!");
-          setUploading(false);
-          clearFile();
-          setTitle('');
-          setDescription('');
-          onUploadComplete();
-        }
-      );
+      await uploadGalleryItem(file, title, description, fileType, user);
+      setUploading(false);
+      clearForm();
+      onUploadComplete();
     } catch (error) {
       console.error("Upload error:", error);
-      toast.error("Upload failed. Please try again.");
       setUploading(false);
     }
+  };
+
+  const clearForm = () => {
+    setFile(null);
+    setPreview(null);
+    setTitle('');
+    setDescription('');
   };
 
   // If not admin, don't render the component
@@ -130,74 +66,24 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
       </h3>
       
       <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-1">Title</label>
-          <Input 
-            placeholder="Enter a title" 
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            disabled={uploading}
-          />
-        </div>
+        <UploadForm
+          title={title}
+          description={description}
+          setTitle={setTitle}
+          setDescription={setDescription}
+          uploading={uploading}
+        />
         
-        <div>
-          <label className="block text-sm font-medium mb-1">Description</label>
-          <Input 
-            placeholder="Enter a description" 
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            disabled={uploading}
+        {file ? (
+          <ImagePreview
+            file={file}
+            preview={preview}
+            fileType={fileType}
+            onClear={clearForm}
           />
-        </div>
-        
-        <div className="border-2 border-dashed rounded-lg p-4 hover:border-primary transition-colors">
-          {!file ? (
-            <div 
-              className="flex flex-col items-center justify-center py-6 cursor-pointer"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <Upload className="h-10 w-10 text-muted-foreground mb-2" />
-              <p className="text-sm text-muted-foreground mb-1">Click to upload an image or video</p>
-              <p className="text-xs text-muted-foreground">PNG, JPG, GIF, MP4 up to 10MB</p>
-            </div>
-          ) : (
-            <div className="relative">
-              <button 
-                className="absolute top-2 right-2 bg-background/80 p-1 rounded-full"
-                onClick={clearFile}
-              >
-                <X className="h-4 w-4" />
-              </button>
-              
-              {preview ? (
-                <img 
-                  src={preview} 
-                  alt="Preview" 
-                  className="w-full h-48 object-contain rounded"
-                />
-              ) : (
-                <div className="w-full h-48 bg-muted flex items-center justify-center rounded">
-                  {fileType === 'image' ? (
-                    <FileImage className="h-12 w-12 text-muted-foreground" />
-                  ) : (
-                    <FileVideo className="h-12 w-12 text-muted-foreground" />
-                  )}
-                </div>
-              )}
-              
-              <p className="mt-2 text-sm truncate">{file.name}</p>
-            </div>
-          )}
-          
-          <input 
-            type="file" 
-            ref={fileInputRef}
-            className="hidden" 
-            accept="image/*,video/*" 
-            onChange={handleFileChange}
-            disabled={uploading}
-          />
-        </div>
+        ) : (
+          <FileUploader onFileChange={handleFileChange} disabled={uploading} />
+        )}
         
         <Button 
           className="w-full gap-2" 
