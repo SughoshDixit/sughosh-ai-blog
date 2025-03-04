@@ -20,14 +20,6 @@ import {
   QueryDocumentSnapshot
 } from "firebase/firestore";
 
-type GalleryItem = {
-  id: number | string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  type: "image" | "video";
-};
-
 const ADMIN_EMAIL = ""; // Replace with your email in production
 
 const AIGalleryPage = () => {
