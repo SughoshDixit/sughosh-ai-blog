@@ -14,6 +14,9 @@ export function Footer() {
             <p className="text-muted-foreground max-w-xs">
               A personal portfolio and blog showcasing my work, achievements, and thoughts.
             </p>
+            <p className="text-muted-foreground mt-4 font-serif italic">
+              "Swayameva Mrugendrata"
+            </p>
           </div>
           
           <div>
@@ -78,6 +81,9 @@ export function Footer() {
             </div>
             <p className="text-sm text-muted-foreground">
               © {currentYear} Portfolio. All rights reserved.
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Made with ❤️ by Sughosh
             </p>
           </div>
         </div>

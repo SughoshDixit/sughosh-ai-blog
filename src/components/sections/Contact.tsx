@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Download, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Progress } from "@/components/ui/progress";
 
 export function Contact() {
   const { toast } = useToast();
@@ -138,6 +139,12 @@ export function Contact() {
                       </span>
                     )}
                   </Button>
+                  
+                  {isSubmitting && (
+                    <div className="mt-4">
+                      <Progress value={75} className="h-2" />
+                    </div>
+                  )}
                 </form>
               </CardContent>
             </Card>
@@ -157,7 +164,7 @@ export function Contact() {
                     <div>
                       <h4 className="font-medium mb-1">Email</h4>
                       <p className="text-muted-foreground">
-                        sughosh@example.com
+                        sughoshpdixit@gmail.com
                       </p>
                     </div>
                   </div>
@@ -169,7 +176,7 @@ export function Contact() {
                     <div>
                       <h4 className="font-medium mb-1">Phone</h4>
                       <p className="text-muted-foreground">
-                        +91 9876543210
+                        +91 8310080859
                       </p>
                     </div>
                   </div>
@@ -188,7 +195,12 @@ export function Contact() {
                   
                   <div className="pt-4 border-t border-border">
                     <Button variant="outline" className="w-full" asChild>
-                      <a href="#" className="flex items-center justify-center gap-2">
+                      <a 
+                        href="https://drive.google.com/file/d/16f0CT3Yvo9GU_2Pw6KPCrHvEnyHa1kP8/view?usp=sharing" 
+                        className="flex items-center justify-center gap-2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Download className="h-4 w-4" />
                         <span>Download Resume</span>
                       </a>
@@ -248,6 +260,13 @@ export function Contact() {
               </CardContent>
             </Card>
           </div>
+        </div>
+        
+        <div className="mt-12 text-center">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-serif italic mr-3">"Swayameva Mrugendrata"</span>
+            <span className="block sm:inline-block mt-2 sm:mt-0">Made with ❤️ by Sughosh</span>
+          </p>
         </div>
       </div>
     </section>
