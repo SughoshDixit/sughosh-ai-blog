@@ -28,11 +28,11 @@ const AIGalleryPage = () => {
             {/* Featured Image Preview */}
             <div className="mb-10">
               <Card className="overflow-hidden border-0 shadow-lg">
-                <div className="aspect-[3/4] md:aspect-[16/9] relative">
+                <div className="relative">
                   <img 
                     src="/lovable-uploads/b007e0ae-455f-476f-939e-8b0f83230810.png" 
                     alt="AI Gallery Featured Image"
-                    className="w-full h-full object-cover"
+                    className="w-full h-auto object-contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                     <div className="p-6 text-white">
