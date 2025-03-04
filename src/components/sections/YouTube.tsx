@@ -3,13 +3,12 @@ import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Play } from "lucide-react";
-import Lottie from "lottie-react";
-import videoAnimation from "@/assets/animations/video-animation.json";
 
 type Video = {
   id: string;
   title: string;
   description: string;
+  youtubeId: string;
 };
 
 export function YouTube() {
@@ -17,17 +16,20 @@ export function YouTube() {
     {
       id: "video1",
       title: "Channel Intro: Data Science, Music, Footballer, and Content Creation",
-      description: "An introduction to my channel covering my journey through data science, music, football, and content creation."
+      description: "An introduction to my channel covering my journey through data science, music, football, and content creation.",
+      youtubeId: "dQw4w9WgXcQ" // Replace with actual YouTube ID
     },
     {
       id: "video2",
       title: "TechJourney Series: My Path to Becoming a Data Scientist",
-      description: "Learn about my journey to becoming a data scientist at Oracle and the challenges I overcame along the way."
+      description: "Learn about my journey to becoming a data scientist at Oracle and the challenges I overcame along the way.",
+      youtubeId: "KYz2wyBy3kc" // Replace with actual YouTube ID
     },
     {
       id: "video3",
       title: "Astronomy Explorations: Night Sky Observations",
-      description: "Join me as I explore the night sky and share fascinating facts about our cosmos and celestial objects."
+      description: "Join me as I explore the night sky and share fascinating facts about our cosmos and celestial objects.",
+      youtubeId: "V1i_x2_TGE0" // Replace with actual YouTube ID
     }
   ];
 
@@ -45,8 +47,17 @@ export function YouTube() {
           {videos.map((video) => (
             <Card key={video.id} className="glass-card overflow-hidden hover-scale transition-all duration-300 flex flex-col border border-primary/20 dark:border-accent/20 shadow-lg dark:shadow-accent/5">
               <div className="aspect-video relative overflow-hidden bg-muted dark:bg-muted/30">
-                {/* This is a placeholder. In a real implementation, you would embed actual YouTube videos */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <img 
+                  src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
+                  alt={video.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to medium quality thumbnail if HD fails
+                    const target = e.target as HTMLImageElement;
+                    target.src = `https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`;
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors duration-300">
                   <div className="p-4 rounded-full bg-secondary/90 text-secondary-foreground hover:bg-secondary transition-colors duration-300 cursor-pointer">
                     <Play className="h-8 w-8" />
                   </div>
@@ -60,7 +71,12 @@ export function YouTube() {
               
               <CardFooter className="p-6 pt-0">
                 <Button className="w-full bg-primary hover:bg-primary/90 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/90" asChild>
-                  <a href="#" className="flex items-center justify-center gap-2">
+                  <a 
+                    href={`https://www.youtube.com/watch?v=${video.youtubeId}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
                     <span>Watch Video</span>
                     <ExternalLink className="h-4 w-4" />
                   </a>

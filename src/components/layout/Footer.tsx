@@ -17,6 +17,13 @@ export function Footer() {
             <p className="text-muted-foreground mt-4 font-serif italic">
               "Swayameva Mrugendrata"
             </p>
+            <div className="mt-6">
+              <img 
+                src="/lovable-uploads/d3b47e7b-8dee-4592-a742-097df04b49f2.png"
+                alt="Sughosh Dixit"
+                className="rounded-lg shadow-md w-32 h-32 object-cover"
+              />
+            </div>
           </div>
           
           <div>
