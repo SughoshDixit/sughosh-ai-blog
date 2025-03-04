@@ -1,77 +1,65 @@
 
-import React, { createContext, useEffect, useState } from "react";
-import { User } from "@/types";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { 
+  User as FirebaseUser,
+  signInWithPopup, 
+  signOut as firebaseSignOut,
+  onAuthStateChanged 
+} from "firebase/auth";
+import { auth, googleProvider } from "@/lib/firebase";
+import { toast } from "sonner";
 
-interface AuthContextType {
-  user: User | null;
+interface AuthContextProps {
+  user: FirebaseUser | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
-  logout: () => void;
+  signInWithGoogle: () => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
-export const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<AuthContextProps>({
   user: null,
   isAuthenticated: false,
   isLoading: true,
-  login: async () => {},
-  register: async () => {},
-  logout: () => {},
+  signInWithGoogle: async () => {},
+  signOut: async () => {},
 });
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ 
+  children 
+}) => {
+  const [user, setUser] = useState<FirebaseUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is stored in localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setIsLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const login = async (email: string, password: string) => {
-    // Simulate API call
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    // Mock user for demo
-    const mockUser: User = {
-      id: "user-1",
-      name: "Demo User",
-      email: email,
-      avatar: "https://randomuser.me/api/portraits/women/3.jpg",
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem("user", JSON.stringify(mockUser));
-    setIsLoading(false);
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Successfully signed in with Google!");
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+      toast.error("Failed to sign in with Google. Please try again.");
+    }
   };
 
-  const register = async (name: string, email: string, password: string) => {
-    // Simulate API call
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    // Mock user for demo
-    const mockUser: User = {
-      id: "user-" + Date.now(),
-      name: name,
-      email: email,
-      avatar: "https://randomuser.me/api/portraits/women/4.jpg",
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem("user", JSON.stringify(mockUser));
-    setIsLoading(false);
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
+  const signOut = async () => {
+    try {
+      await firebaseSignOut(auth);
+      toast.success("Successfully signed out");
+    } catch (error) {
+      console.error("Error signing out:", error);
+      toast.error("Failed to sign out. Please try again.");
+    }
   };
 
   return (
@@ -80,9 +68,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         user,
         isAuthenticated: !!user,
         isLoading,
-        login,
-        register,
-        logout,
+        signInWithGoogle,
+        signOut,
       }}
     >
       {children}

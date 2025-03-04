@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageSquareText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LoginButton } from "@/components/auth/LoginButton";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,6 +35,7 @@ export function Header() {
     { name: "Achievements", path: "/#achievements" },
     { name: "Contact", path: "/#contact" },
     { name: "Blog", path: "/blog" },
+    { name: "Chatbot", path: "/chatbot" },
   ];
 
   return (
@@ -75,6 +77,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
+            <LoginButton />
             <ThemeToggle />
             
             {/* Mobile menu button */}
