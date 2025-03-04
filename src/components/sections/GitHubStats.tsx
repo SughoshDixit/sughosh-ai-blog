@@ -6,25 +6,25 @@ export function GitHubStats() {
   const stats = [
     {
       id: 1,
-      icon: <GitCommit className="h-8 w-8 text-primary" />,
+      icon: <GitCommit className="h-8 w-8 text-deep-blue" />,
       value: "500+",
       label: "Contributions"
     },
     {
       id: 2,
-      icon: <Star className="h-8 w-8 text-accent" />,
+      icon: <Star className="h-8 w-8 text-accent-gold" />,
       value: "20+",
       label: "Stars Earned"
     },
     {
       id: 3,
-      icon: <GitBranch className="h-8 w-8 text-secondary" />,
+      icon: <GitBranch className="h-8 w-8 text-soft-pink" />,
       value: "30+",
       label: "Forks"
     },
     {
       id: 4,
-      icon: <Trophy className="h-8 w-8 text-accent" />,
+      icon: <Trophy className="h-8 w-8 text-accent-gold" />,
       value: "15+",
       label: "Repositories"
     }
@@ -64,7 +64,7 @@ export function GitHubStats() {
           
           <div className="flex justify-center">
             <img 
-              src={`https://ghchart.rshah.org/9b87f5/sughoshdixit`} 
+              src={`https://ghchart.rshah.org/8B5CF6/sughoshdixit`} 
               alt="GitHub Contribution Graph"
               className="max-w-full rounded-md dark:opacity-90"
             />

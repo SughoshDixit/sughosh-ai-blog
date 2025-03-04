@@ -8,88 +8,88 @@
 @layer base {
   :root {
     --background: 0 0% 98%;
-    --foreground: 214 59% 15%;
+    --foreground: 265 80% 40%;
 
     --card: 0 0% 98%;
-    --card-foreground: 214 59% 15%;
+    --card-foreground: 265 80% 40%;
 
     --popover: 0 0% 98%;
-    --popover-foreground: 214 59% 15%;
+    --popover-foreground: 265 80% 40%;
 
-    --primary: 205 100% 40%; /* Oracle blue - core brand color */
+    --primary: 265 83% 63%; /* Vibrant purple - core brand color */
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 340 100% 48%; /* Oracle red - for important actions */
+    --secondary: 300 95% 60%; /* Magenta - for important actions */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 214 15% 94%;
-    --muted-foreground: 214 20% 46%;
+    --muted: 265 15% 94%;
+    --muted-foreground: 265 20% 46%;
 
-    --accent: 205 75% 84%; /* Light blue for subtle highlights */
-    --accent-foreground: 214 59% 15%;
+    --accent: 35 95% 52%; /* Gold for subtle highlights */
+    --accent-foreground: 265 80% 40%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 15% 91%;
-    --input: 214 15% 91%;
-    --ring: 205 100% 40%;
+    --border: 265 15% 91%;
+    --input: 265 15% 91%;
+    --ring: 265 83% 63%;
 
-    --radius: 0.375rem; /* Redwood uses more subtle rounded corners */
+    --radius: 0.375rem;
 
-    --sidebar-background: 214 15% 96%;
-    --sidebar-foreground: 214 20% 46%;
-    --sidebar-primary: 205 100% 40%;
+    --sidebar-background: 265 15% 96%;
+    --sidebar-foreground: 265 20% 46%;
+    --sidebar-primary: 265 83% 63%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 214 15% 94%;
-    --sidebar-accent-foreground: 214 59% 15%;
-    --sidebar-border: 214 15% 91%;
-    --sidebar-ring: 205 100% 40%;
+    --sidebar-accent: 265 15% 94%;
+    --sidebar-accent-foreground: 265 80% 40%;
+    --sidebar-border: 265 15% 91%;
+    --sidebar-ring: 265 83% 63%;
     
-    --deep-blue: 226 45% 34%;  /* #2F3C7E */
-    --soft-pink: 354 74% 95%;  /* #FBEAEB */
+    --deep-blue: 265 83% 63%;  /* #8B5CF6 - vibrant purple */
+    --soft-pink: 300 95% 60%;  /* #D946EF - magenta */
   }
 
   .dark {
-    --background: 214 53% 13%;
+    --background: 265 30% 10%;
     --foreground: 0 0% 98%;
 
-    --card: 214 53% 13%;
+    --card: 265 30% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 214 53% 13%;
+    --popover: 265 30% 10%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 205 100% 50%; /* Brighter Oracle blue for dark mode */
+    --primary: 265 83% 70%; /* Brighter vibrant purple for dark mode */
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 340 100% 56%; /* Brighter Oracle red for dark mode */
+    --secondary: 300 95% 65%; /* Brighter magenta for dark mode */
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 214 33% 20%;
-    --muted-foreground: 214 20% 75%;
+    --muted: 265 33% 20%;
+    --muted-foreground: 265 20% 75%;
 
-    --accent: 205 40% 30%; /* Dark blue for subtle highlights */
+    --accent: 35 95% 55%; /* Brighter gold for dark mode */
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 33% 23%;
-    --input: 214 33% 23%;
-    --ring: 205 100% 50%;
+    --border: 265 33% 23%;
+    --input: 265 33% 23%;
+    --ring: 265 83% 70%;
     
-    --sidebar-background: 214 33% 16%;
-    --sidebar-foreground: 214 20% 80%;
-    --sidebar-primary: 205 100% 50%;
+    --sidebar-background: 265 33% 16%;
+    --sidebar-foreground: 265 20% 80%;
+    --sidebar-primary: 265 83% 70%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 214 33% 20%;
-    --sidebar-accent-foreground: 214 20% 75%;
-    --sidebar-border: 214 33% 23%;
-    --sidebar-ring: 205 100% 50%;
+    --sidebar-accent: 265 33% 20%;
+    --sidebar-accent-foreground: 265 20% 75%;
+    --sidebar-border: 265 33% 23%;
+    --sidebar-ring: 265 83% 70%;
     
-    --deep-blue: 226 45% 34%;  /* #2F3C7E */
-    --soft-pink: 354 74% 95%;  /* #FBEAEB */
+    --deep-blue: 265 83% 70%;  /* #8B5CF6 - vibrant purple */
+    --soft-pink: 300 95% 65%;  /* #D946EF - magenta */
   }
 }
 

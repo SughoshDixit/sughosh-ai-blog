@@ -6,25 +6,25 @@ export function FunFacts() {
   const facts = [
     {
       id: 1,
-      icon: <Trophy className="h-10 w-10 text-accent" />,
+      icon: <Trophy className="h-10 w-10 text-accent-gold" />,
       title: "Football Enthusiast",
       description: "I'm passionate about football, both playing and watching. It's not just a sport but a way of life that teaches teamwork and perseverance."
     },
     {
       id: 2,
-      icon: <MusicIcon className="h-10 w-10 text-secondary" />,
+      icon: <MusicIcon className="h-10 w-10 text-soft-pink" />,
       title: "Music Lover",
       description: "Music is my creative outlet. I enjoy both playing and composing, finding harmony in melodies that tell stories without words."
     },
     {
       id: 3,
-      icon: <FilmIcon className="h-10 w-10 text-primary" />,
+      icon: <FilmIcon className="h-10 w-10 text-deep-blue" />,
       title: "Astronomy Aficionado",
       description: "The cosmos fascinates me. I spend clear nights stargazing, contemplating our place in the vast universe and marveling at celestial wonders."
     },
     {
       id: 4,
-      icon: <History className="h-10 w-10 text-accent" />,
+      icon: <History className="h-10 w-10 text-accent-gold" />,
       title: "History Enthusiast",
       description: "I believe Bharat's rich history has been misinterpreted. I'm passionate about exploring its ancient wisdom and contributions to world civilization."
     }

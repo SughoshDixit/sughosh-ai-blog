@@ -25,8 +25,9 @@ export default {
 				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
-				'deep-blue': '#2F3C7E',
-				'soft-pink': '#FBEAEB',
+				'deep-blue': '#8B5CF6',
+				'soft-pink': '#D946EF',
+				'accent-gold': '#F59E0B',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
