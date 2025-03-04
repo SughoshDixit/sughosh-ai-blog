@@ -10,6 +10,7 @@ import { FunFacts } from "@/components/sections/FunFacts";
 import { GitHubStats } from "@/components/sections/GitHubStats";
 import { SocialMedia } from "@/components/sections/SocialMedia";
 import { YouTube } from "@/components/sections/YouTube";
+import { AIGallery } from "@/components/sections/AIGallery";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -36,6 +37,7 @@ const Index = () => {
         <About />
         <GitHubStats />
         <Projects />
+        <AIGallery />
         <FunFacts />
         <YouTube />
         <Achievements />

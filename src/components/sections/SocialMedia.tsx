@@ -73,7 +73,7 @@ export function SocialMedia() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {profiles.map((profile) => (
-            <Card key={profile.id} className="glass-card overflow-hidden hover-scale transition-all duration-300 border-none">
+            <Card key={profile.id} className="glass-card overflow-hidden hover-scale transition-all duration-300 border-none shadow-md">
               <div className={`${profile.bgColor} py-4 px-6 ${profile.textColor}`}>
                 <div className="flex items-center gap-3">
                   {profile.icon}
@@ -81,12 +81,12 @@ export function SocialMedia() {
                 </div>
               </div>
               <CardContent className="p-6">
-                <p className="text-muted-foreground mb-4">
+                <p className="text-muted-foreground mb-4 font-medium">
                   {profile.username}
                 </p>
-                <Button asChild className="w-full">
+                <Button asChild variant="default" className="w-full">
                   <a href={profile.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                    <span>Visit {profile.name}</span>
+                    <span>Visit Profile</span>
                     <ExternalLink className="h-4 w-4" />
                   </a>
                 </Button>

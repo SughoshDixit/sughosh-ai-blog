@@ -1,6 +1,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Trophy, Award, Star, Medal } from "lucide-react";
+import { Trophy, Award, Star, Medal, Cpu, Shield, Brain, Lightbulb, Rocket } from "lucide-react";
 
 type Achievement = {
   id: number;
@@ -14,31 +14,38 @@ export function Achievements() {
   const achievements: Achievement[] = [
     {
       id: 1,
-      year: "2023",
-      title: "Design Excellence Award",
-      description: "Recognized for outstanding UI/UX design work on the SmartHome application.",
-      icon: <Trophy className="h-8 w-8 text-primary" />,
+      year: "2024",
+      title: "FFI Scale91 Fintech Hackathon",
+      description: "Currently working on a Fintech solution for Algorithmic trading by leveraging Zerodha's KiteConnect API.",
+      icon: <Rocket className="h-8 w-8 text-primary" />,
     },
     {
       id: 2,
-      year: "2022",
-      title: "Tech Innovation Prize",
-      description: "Awarded for developing an innovative AI-powered content generation platform.",
-      icon: <Award className="h-8 w-8 text-primary" />,
+      year: "2023",
+      title: "Karnataka State Police Hackathon",
+      description: "Finalists, built a Flask-based Face recognition application for criminals using Image Data Augmentation and GAN deployed on Microsoft Azure Cloud.",
+      icon: <Shield className="h-8 w-8 text-primary" />,
     },
     {
       id: 3,
       year: "2021",
-      title: "Open Source Contributor",
-      description: "Recognized as a top contributor to the React ecosystem with over 500 commits.",
-      icon: <Star className="h-8 w-8 text-primary" />,
+      title: "PANIIT Hackathon IISC",
+      description: "Selected in top 20 promising ideas. Worked on Project Alphers - an Early age Education and Talents prediction application.",
+      icon: <Brain className="h-8 w-8 text-primary" />,
     },
     {
       id: 4,
       year: "2020",
-      title: "Hackathon Winner",
-      description: "First place in the Global Tech Hackathon for developing a health monitoring solution.",
-      icon: <Medal className="h-8 w-8 text-primary" />,
+      title: "Garage48 Covid19 Hackathon",
+      description: "Built an application called QuarantineForSure to assist with pandemic-related challenges.",
+      icon: <Star className="h-8 w-8 text-primary" />,
+    },
+    {
+      id: 5,
+      year: "2019",
+      title: "Rakathon 2.0",
+      description: "Selected among the top 15 most promising ideas, showcasing innovation and problem-solving abilities.",
+      icon: <Lightbulb className="h-8 w-8 text-primary" />,
     },
   ];
 
@@ -48,7 +55,7 @@ export function Achievements() {
         <div className="mb-16 text-center">
           <h2 className="section-title">Achievements</h2>
           <p className="section-subtitle mx-auto">
-            Milestones and recognition from my professional journey.
+            Hackathons and recognition from my professional journey.
           </p>
         </div>
 
@@ -70,7 +77,7 @@ export function Achievements() {
                 </div>
                 
                 <div className="w-full md:w-[45%] px-4 md:px-0">
-                  <Card className="glass-card hover-scale overflow-hidden">
+                  <Card className="glass-card hover-scale overflow-hidden shadow-md">
                     <CardContent className="p-6">
                       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                         <div className="p-3 rounded-lg bg-primary/10">
