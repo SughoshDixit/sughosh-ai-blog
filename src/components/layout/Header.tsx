@@ -28,10 +28,12 @@ export function Header() {
     { name: "Home", path: "/" },
     { name: "About", path: "/#about" },
     { name: "Projects", path: "/#projects" },
+    { name: "Fun Facts", path: "/#funfacts" },
+    { name: "GitHub", path: "/#githubstats" },
+    { name: "YouTube", path: "/#youtube" },
     { name: "Achievements", path: "/#achievements" },
     { name: "Contact", path: "/#contact" },
     { name: "Blog", path: "/blog" },
-    { name: "Dashboard", path: "/dashboard" },
   ];
 
   return (
@@ -49,7 +51,7 @@ export function Header() {
             to="/" 
             className="text-xl font-bold text-foreground transition-all duration-300 hover:opacity-80"
           >
-            Portfolio
+            Sughosh Dixit
           </Link>
 
           {/* Desktop Navigation */}

@@ -6,6 +6,10 @@ import { About } from "@/components/sections/About";
 import { Projects } from "@/components/sections/Projects";
 import { Achievements } from "@/components/sections/Achievements";
 import { Contact } from "@/components/sections/Contact";
+import { FunFacts } from "@/components/sections/FunFacts";
+import { GitHubStats } from "@/components/sections/GitHubStats";
+import { SocialMedia } from "@/components/sections/SocialMedia";
+import { YouTube } from "@/components/sections/YouTube";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -30,8 +34,12 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <About />
+        <GitHubStats />
         <Projects />
+        <FunFacts />
+        <YouTube />
         <Achievements />
+        <SocialMedia />
         <Contact />
       </main>
       <Footer />

@@ -2,19 +2,28 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { Code, Database, FilmIcon, Football, History, Play, Rocket } from "lucide-react";
 
 export function About() {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const skills = [
-    "UI/UX Design",
-    "Frontend Development",
-    "Backend Development",
-    "Mobile Development",
-    "Database Design",
-    "API Development",
-    "Cloud Services",
-    "DevOps",
+    { name: "Data Science", icon: <Database className="h-4 w-4 mr-2" /> },
+    { name: "Web Development", icon: <Code className="h-4 w-4 mr-2" /> },
+    { name: "Product Development", icon: <Rocket className="h-4 w-4 mr-2" /> },
+    { name: "Competitive Programming", icon: <Code className="h-4 w-4 mr-2" /> },
+    { name: "Football", icon: <Football className="h-4 w-4 mr-2" /> },
+    { name: "Astronomy", icon: <FilmIcon className="h-4 w-4 mr-2" /> },
+    { name: "Bharat's History", icon: <History className="h-4 w-4 mr-2" /> },
+  ];
+
+  const languages = [
+    { name: "Python", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+    { name: "JavaScript", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    { name: "HTML", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "React", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Oracle", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
+    { name: "VS Code", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
   ];
 
   return (
@@ -23,7 +32,7 @@ export function About() {
         <div className="mb-16 text-center">
           <h2 className="section-title">About Me</h2>
           <p className="section-subtitle mx-auto">
-            I combine technical expertise with creative design to build meaningful digital experiences.
+            Data Scientist at Oracle with a passion for football, music, and Bharat's history.
           </p>
         </div>
 
@@ -49,24 +58,36 @@ export function About() {
           <div className="order-1 lg:order-2">
             <h3 className="text-2xl font-bold mb-4">Who I Am</h3>
             <p className="text-muted-foreground mb-6">
-              I'm a passionate creator with over 5 years of experience building elegant solutions for complex problems. 
-              My journey began with a fascination for how things work, which led me to explore the intersection of design 
-              and technology.
+              I'm a Data Scientist at Oracle, combining analytical expertise with creative problem-solving. My professional 
+              journey is complemented by my passion for football, music, and a deep interest in Bharat's history.
             </p>
             <p className="text-muted-foreground mb-6">
-              I believe in creating purposeful digital products that not only look beautiful but also solve real problems 
-              for users. My approach combines strategic thinking with hands-on execution to deliver results that exceed expectations.
+              As a civilizationalist by ideology, I believe in understanding our collective past to shape a better future.
+              I'm also an enthusiast of astronomy and enjoy exploring the cosmos in my free time.
             </p>
             
-            <h3 className="text-2xl font-bold mb-4 mt-10">My Skills</h3>
-            <div className="flex flex-wrap gap-2">
+            <h3 className="text-2xl font-bold mb-4 mt-10">Areas of Expertise</h3>
+            <div className="flex flex-wrap gap-3 mb-8">
               {skills.map((skill) => (
                 <span 
-                  key={skill}
-                  className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                  key={skill.name}
+                  className="px-3 py-2 bg-primary/10 text-primary rounded-full text-sm flex items-center"
                 >
-                  {skill}
+                  {skill.icon}
+                  {skill.name}
                 </span>
+              ))}
+            </div>
+
+            <h3 className="text-2xl font-bold mb-4">Languages & Tools</h3>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 my-6">
+              {languages.map((lang) => (
+                <div key={lang.name} className="flex flex-col items-center">
+                  <div className="w-12 h-12 mb-2">
+                    <img src={lang.image} alt={lang.name} className="w-full h-full" />
+                  </div>
+                  <span className="text-sm text-muted-foreground">{lang.name}</span>
+                </div>
               ))}
             </div>
           </div>

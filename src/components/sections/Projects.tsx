@@ -13,7 +13,7 @@ type Project = {
   image: string;
   tags: string[];
   liveUrl?: string;
-  repoUrl?: string;
+  repoUrl: string;
 };
 
 export function Projects() {
@@ -22,30 +22,43 @@ export function Projects() {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform built with React, Node.js, and MongoDB. Features include product search, cart management, and secure payment processing.",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
-      repoUrl: "#",
+      title: "About",
+      description: "A public repository showcasing my personal and professional information.",
+      image: "https://images.unsplash.com/photo-1555952517-2e8e729e0b44",
+      tags: ["Personal", "Portfolio", "GitHub"],
+      repoUrl: "https://github.com/sughoshdixit/About",
     },
     {
       id: 2,
-      title: "Health Tracking App",
-      description: "A mobile app for tracking health metrics, exercise routines, and nutrition. Integrates with wearable devices for comprehensive health monitoring.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-      tags: ["React Native", "Firebase", "GraphQL"],
-      liveUrl: "#",
-      repoUrl: "#",
+      title: "Covid-19 News Articles Analysis",
+      description: "Analysis of COVID-19 news articles from 2020-2022, exploring trends and sentiment over time.",
+      image: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57",
+      tags: ["Data Analysis", "NLP", "Python", "COVID-19"],
+      repoUrl: "https://github.com/sughoshdixit/Covid-19-News-Articles-2020-2022-Analysis",
     },
     {
       id: 3,
-      title: "AI Content Generator",
-      description: "A web application that uses AI to generate content for marketing, blogs, and social media. Includes SEO optimization and content scheduling.",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
-      tags: ["Next.js", "OpenAI API", "TailwindCSS"],
-      liveUrl: "#",
-      repoUrl: "#",
+      title: "Diabetes Dataset using Naive Bayes Classifier",
+      description: "Implementation of a Naive Bayes classifier for diabetes prediction from medical data.",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
+      tags: ["Machine Learning", "Healthcare", "Python", "Data Science"],
+      repoUrl: "https://github.com/sughoshdixit/Diabetes-Dataset-using-Naive-Bayes-Classifier",
+    },
+    {
+      id: 4,
+      title: "Face Detection",
+      description: "A JavaScript-based web application for real-time face detection using computer vision techniques.",
+      image: "https://images.unsplash.com/photo-1526378722484-bd91ca387e72",
+      tags: ["JavaScript", "Computer Vision", "Web Development"],
+      repoUrl: "https://github.com/sughoshdixit/Face-Detect",
+    },
+    {
+      id: 5,
+      title: "Hotel Waiter Tip Prediction",
+      description: "Predictive analysis model using Locally Weighted Regression to forecast restaurant tips.",
+      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0",
+      tags: ["Machine Learning", "Regression", "Python", "Data Science"],
+      repoUrl: "https://github.com/sughoshdixit/Hotel-Waiter-Tip-Prediction-Using-Locally-Weighted-Regression",
     },
   ];
 
@@ -60,9 +73,9 @@ export function Projects() {
     <section id="projects" className="section-container bg-muted/30">
       <div className="container page-container">
         <div className="mb-16 text-center">
-          <h2 className="section-title">My Projects</h2>
+          <h2 className="section-title">My GitHub Projects</h2>
           <p className="section-subtitle mx-auto">
-            Explore some of my recent work showcasing my design and development skills.
+            Explore my work in data science, machine learning, and web development.
           </p>
         </div>
 
@@ -107,14 +120,12 @@ export function Projects() {
                   </Button>
                 )}
                 
-                {project.repoUrl && (
-                  <Button variant="outline" asChild>
-                    <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
-                      <Github className="h-4 w-4" />
-                      <span>Code</span>
-                    </a>
-                  </Button>
-                )}
+                <Button variant={project.liveUrl ? "outline" : "default"} asChild>
+                  <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                    <Github className="h-4 w-4" />
+                    <span>View on GitHub</span>
+                  </a>
+                </Button>
               </CardFooter>
             </Card>
           ))}

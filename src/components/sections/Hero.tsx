@@ -26,8 +26,8 @@ export function Hero() {
             }`}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight mb-6">
-              <span className="block">Crafting Digital</span>
-              <span className="block text-primary">Experiences</span>
+              <span className="block">Sughosh Dixit</span>
+              <span className="block text-primary">Data Scientist at Oracle</span>
             </h1>
           </div>
 
@@ -36,9 +36,8 @@ export function Hero() {
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
             }`}
           >
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Welcome to my personal portfolio. I'm a designer and developer focused on creating 
-              beautiful, functional, and user-centered digital experiences.
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto italic">
+              "Footballer and musician by passion, data scientist by profession, civilizationalist by ideology."
             </p>
           </div>
 
