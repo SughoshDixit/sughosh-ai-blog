@@ -9,90 +9,92 @@
 @layer base {
   :root {
     --background: 0 0% 100%; /* Pure white */
-    --foreground: 300 70% 40%; /* Magenta for main text */
+    --foreground: 260 70% 40%; /* Purple for main text */
 
     --card: 0 0% 100%;
-    --card-foreground: 300 70% 30%;
+    --card-foreground: 260 70% 30%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 300 70% 30%;
+    --popover-foreground: 260 70% 30%;
 
-    --primary: 300 70% 40%; /* Magenta as primary */
+    --primary: 260 70% 40%; /* Purple as primary */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 65% 45%; /* Purple shade as secondary */
+    --secondary: 240 65% 45%; /* Darker purple shade as secondary */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 280 20% 95%;
-    --muted-foreground: 300 30% 40%;
+    --muted: 260 20% 95%;
+    --muted-foreground: 260 30% 40%;
 
-    --accent: 300 70% 90%; /* Light magenta accent */
-    --accent-foreground: 300 80% 30%;
+    --accent: 45 90% 55%; /* Gold accent */
+    --accent-foreground: 0 0% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 300 20% 90%;
-    --input: 300 20% 90%;
-    --ring: 300 70% 40%;
+    --border: 260 20% 90%;
+    --input: 260 20% 90%;
+    --ring: 260 70% 40%;
 
     --radius: 0.375rem;
 
-    --sidebar-background: 300 30% 98%;
-    --sidebar-foreground: 300 70% 40%;
-    --sidebar-primary: 300 70% 40%;
+    --sidebar-background: 260 30% 98%;
+    --sidebar-foreground: 260 70% 40%;
+    --sidebar-primary: 260 70% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 300 30% 94%;
-    --sidebar-accent-foreground: 300 70% 30%;
-    --sidebar-border: 300 20% 91%;
-    --sidebar-ring: 300 70% 40%;
+    --sidebar-accent: 260 30% 94%;
+    --sidebar-accent-foreground: 260 70% 30%;
+    --sidebar-border: 260 20% 91%;
+    --sidebar-ring: 260 70% 40%;
     
-    --deep-blue: 220 80% 45%;  /* #2055be - rich blue */
-    --soft-blue: 190 80% 45%;  /* #1a9ca8 - teal blue */
-    --soft-pink: 330 80% 90%;  /* #f8d8e7 - soft pink */
+    --deep-blue: 260 80% 45%;  /* Rich purple */
+    --soft-blue: 270 80% 45%;  /* Lavender */
+    --soft-pink: 280 80% 90%;  /* Soft lavender */
+    --gold: 45 90% 55%;        /* Gold accent */
   }
 
   .dark {
     --background: 0 0% 0%; /* Pure black */
-    --foreground: 300 90% 75%; /* Lighter magenta for dark mode */
+    --foreground: 260 90% 75%; /* Lighter purple for dark mode */
 
     --card: 0 0% 5%;
-    --card-foreground: 300 90% 80%;
+    --card-foreground: 260 90% 80%;
 
     --popover: 0 0% 5%;
-    --popover-foreground: 300 90% 80%;
+    --popover-foreground: 260 90% 80%;
 
-    --primary: 300 90% 65%; /* Brighter magenta for dark mode */
+    --primary: 260 90% 65%; /* Brighter purple for dark mode */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 85% 65%; /* Brighter purple for dark mode */
+    --secondary: 240 85% 65%; /* Brighter secondary purple for dark mode */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 0 0% 15%;
-    --muted-foreground: 300 70% 70%;
+    --muted-foreground: 260 70% 70%;
 
-    --accent: 300 90% 50%; /* Vibrant magenta accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 45 95% 60%; /* Brighter gold accent */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 300 20% 20%;
-    --input: 300 20% 20%;
-    --ring: 300 90% 65%;
+    --border: 260 20% 20%;
+    --input: 260 20% 20%;
+    --ring: 260 90% 65%;
     
     --sidebar-background: 0 0% 7%;
-    --sidebar-foreground: 300 80% 75%;
-    --sidebar-primary: 300 90% 65%;
+    --sidebar-foreground: 260 80% 75%;
+    --sidebar-primary: 260 90% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 300 80% 75%;
-    --sidebar-border: 300 20% 20%;
-    --sidebar-ring: 300 90% 65%;
+    --sidebar-accent-foreground: 260 80% 75%;
+    --sidebar-border: 260 20% 20%;
+    --sidebar-ring: 260 90% 65%;
     
-    --deep-blue: 220 70% 60%;  /* #4d8df3 - brighter rich blue */
-    --soft-blue: 190 70% 55%;  /* #26c5d3 - brighter teal blue */
-    --soft-pink: 330 80% 90%;  /* #f8d8e7 - soft pink */
+    --deep-blue: 260 70% 60%;  /* Brighter rich purple */
+    --soft-blue: 270 70% 55%;  /* Brighter lavender */
+    --soft-pink: 280 80% 90%;  /* Soft lavender */
+    --gold: 45 95% 60%;        /* Brighter gold accent */
   }
 }
 
@@ -148,6 +150,10 @@
     @apply bg-gradient-to-br from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent;
   }
   
+  .gold-gradient {
+    @apply bg-gradient-to-br from-accent via-accent/90 to-accent/70 bg-clip-text text-transparent;
+  }
+  
   .gallery-bg {
     @apply bg-gradient-to-br from-white to-primary/10 dark:from-black dark:to-primary/20;
   }
@@ -170,6 +176,18 @@
   
   .redwood-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .gold-accent {
+    @apply text-accent font-semibold;
+  }
+  
+  .accent-border {
+    @apply border-accent/50;
+  }
+  
+  .accent-highlight {
+    @apply bg-accent/10 text-accent;
   }
 }
 
