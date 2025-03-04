@@ -2,10 +2,10 @@
 export const GalleryHeader = () => {
   return (
     <div className="mb-16 text-center">
-      <h1 className="text-4xl font-bold mb-4 text-magenta dark:text-light-magenta">
+      <h1 className="text-4xl font-bold mb-4 text-primary dark:text-primary">
         AI Canvas & Creations
       </h1>
-      <p className="section-subtitle mx-auto text-dark-magenta/80 dark:text-light-magenta/90">
+      <p className="section-subtitle mx-auto text-primary/80 dark:text-primary/90">
         Exploring the boundless realm of artificial intelligence through visual experiments.
       </p>
     </div>
