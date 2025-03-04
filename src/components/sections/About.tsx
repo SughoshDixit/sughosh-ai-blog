@@ -36,12 +36,12 @@ export function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] hover-scale shadow-xl">
+            <div className="relative rounded-2xl overflow-hidden aspect-square hover-scale shadow-xl">
               <div className="absolute inset-0 bg-primary/10 rounded-2xl" />
               <img 
-                src="/public/lovable-uploads/781efdab-8f9e-48ba-bb81-319419a0eb96.png" 
+                src="/lovable-uploads/d542edc6-ecc4-43c1-ada0-8406f4553dbe.png" 
                 alt="Football player in red jersey celebrating" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             
