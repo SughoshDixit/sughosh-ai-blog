@@ -1,0 +1,12 @@
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sughoshdixit.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 10
+
+# Disallow specific paths if needed
+# Disallow: /admin/

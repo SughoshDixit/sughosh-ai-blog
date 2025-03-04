@@ -9,10 +9,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Heart, Share2, Calendar, Clock, ArrowLeft, Send } from "lucide-react";
+import { SEOHead } from "@/components/seo/SEOHead";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { getPostBySlug, getCommentsByPostId } from "@/services/blogService";
 import { BlogPost, Comment } from "@/types";
+import { Helmet } from "react-helmet-async";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -126,11 +128,85 @@ const BlogPostPage = () => {
     });
   };
 
+  // ISO format date for structured data
+  const formatISODate = (dateString: string) => {
+    return new Date(dateString).toISOString();
+  };
+
   // Calculate read time (based on 200 words per minute)
   const calculateReadTime = (content: string) => {
     const wordCount = content.trim().split(/\s+/).length;
     const readTime = Math.ceil(wordCount / 200);
     return readTime;
+  };
+
+  // Create structured data for BlogPosting
+  const createBlogPostingStructuredData = (post: BlogPost) => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "image": post.coverImage,
+      "wordcount": post.content.trim().split(/\s+/).length,
+      "publisher": {
+        "@type": "Organization",
+        "name": "Sughosh Dixit",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sughoshdixit.com/og-image.png"
+        }
+      },
+      "url": `https://sughoshdixit.com/blog/${post.slug}`,
+      "datePublished": formatISODate(post.publishedAt),
+      "dateCreated": formatISODate(post.publishedAt),
+      "dateModified": formatISODate(post.updatedAt || post.publishedAt),
+      "description": post.excerpt,
+      "author": {
+        "@type": "Person",
+        "name": post.author.name
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://sughoshdixit.com/blog/${post.slug}`
+      },
+      "comment": comments.map(comment => ({
+        "@type": "Comment",
+        "author": {
+          "@type": "Person",
+          "name": comment.userName
+        },
+        "datePublished": formatISODate(comment.createdAt),
+        "text": comment.content
+      }))
+    };
+  };
+
+  // Create breadcrumb structured data
+  const createBreadcrumbStructuredData = (post: BlogPost) => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sughoshdixit.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sughoshdixit.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": `https://sughoshdixit.com/blog/${post.slug}`
+        }
+      ]
+    };
   };
 
   if (isLoading) {
@@ -181,10 +257,51 @@ const BlogPostPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title={`${post.title} | Blog | Sughosh Dixit`}
+        description={post.excerpt}
+        canonicalUrl={`/blog/${post.slug}`}
+        ogType="article"
+        ogImage={post.coverImage}
+        article={{
+          publishedTime: formatISODate(post.publishedAt),
+          modifiedTime: post.updatedAt ? formatISODate(post.updatedAt) : undefined,
+          author: post.author.name,
+          tags: [post.category]
+        }}
+      />
+      
+      {/* Structured Data for BlogPosting and BreadcrumbList */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(createBlogPostingStructuredData(post))}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(createBreadcrumbStructuredData(post))}
+        </script>
+      </Helmet>
+      
       <Header />
       <main className="flex-grow pt-24">
         <article className="container page-container">
           <div className="max-w-4xl mx-auto">
+            {/* Breadcrumb navigation (for accessibility and SEO) */}
+            <nav aria-label="Breadcrumb" className="mb-4">
+              <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <li>
+                  <Link to="/" className="hover:text-primary">Home</Link>
+                </li>
+                <li>&gt;</li>
+                <li>
+                  <Link to="/blog" className="hover:text-primary">Blog</Link>
+                </li>
+                <li>&gt;</li>
+                <li aria-current="page" className="truncate max-w-[200px]">
+                  {post.title}
+                </li>
+              </ol>
+            </nav>
+            
             <Button
               variant="ghost"
               size="sm"
@@ -216,7 +333,9 @@ const BlogPostPage = () => {
               
               <div className="flex items-center gap-1 text-muted-foreground">
                 <Calendar className="h-4 w-4" />
-                <span className="text-sm">{formatDate(post.publishedAt)}</span>
+                <time dateTime={formatISODate(post.publishedAt)} className="text-sm">
+                  {formatDate(post.publishedAt)}
+                </time>
               </div>
               
               <Separator orientation="vertical" className="h-5" />
@@ -280,8 +399,8 @@ const BlogPostPage = () => {
 
             <Separator className="my-12" />
 
-            <div className="mb-16">
-              <h3 className="text-xl font-bold mb-8">Comments ({comments.length})</h3>
+            <section aria-labelledby="comments-heading" className="mb-16">
+              <h2 id="comments-heading" className="text-xl font-bold mb-8">Comments ({comments.length})</h2>
               
               <div className="mb-8">
                 <Textarea
@@ -289,6 +408,7 @@ const BlogPostPage = () => {
                   className="mb-4"
                   value={commentText}
                   onChange={(e) => setCommentText(e.target.value)}
+                  aria-label="Comment text"
                 />
                 <Button
                   onClick={handleSubmitComment}
@@ -327,9 +447,9 @@ const BlogPostPage = () => {
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
                             <h4 className="font-medium">{comment.userName}</h4>
-                            <span className="text-xs text-muted-foreground">
+                            <time dateTime={formatISODate(comment.createdAt)} className="text-xs text-muted-foreground">
                               {formatDate(comment.createdAt)}
-                            </span>
+                            </time>
                           </div>
                           <p className="text-muted-foreground">{comment.content}</p>
                         </div>
@@ -338,7 +458,7 @@ const BlogPostPage = () => {
                   ))}
                 </div>
               )}
-            </div>
+            </section>
           </div>
         </article>
       </main>

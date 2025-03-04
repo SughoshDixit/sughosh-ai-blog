@@ -10,6 +10,7 @@ import { FunFacts } from "@/components/sections/FunFacts";
 import { GitHubStats } from "@/components/sections/GitHubStats";
 import { SocialMedia } from "@/components/sections/SocialMedia";
 import { YouTube } from "@/components/sections/YouTube";
+import { SEOHead } from "@/components/seo/SEOHead";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -30,6 +31,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Sughosh Dixit | Tech, AI, and Innovation"
+        description="Welcome to my personal website. Explore my portfolio, projects, achievements, and insights on technology, AI, and innovative solutions."
+        canonicalUrl="/"
+      />
       <Header />
       <main className="flex-grow">
         <Hero />

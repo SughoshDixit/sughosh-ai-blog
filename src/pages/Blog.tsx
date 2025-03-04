@@ -7,8 +7,10 @@ import { BlogFilters } from "@/components/blog/BlogFilters";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
 import { BlogCardSkeleton } from "@/components/blog/BlogCardSkeleton";
 import { NoResults } from "@/components/blog/NoResults";
+import { SEOHead } from "@/components/seo/SEOHead";
 import { getMockPosts } from "@/services/blogService";
 import { BlogPost } from "@/types";
+import { Helmet } from "react-helmet-async";
 
 const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -40,8 +42,48 @@ const BlogPage = () => {
     post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Create JSON-LD structured data for BlogPosting
+  const createBlogPostingStructuredData = () => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "headline": "Sughosh Dixit's Blog",
+      "description": "Thoughts, insights, and updates from Sughosh Dixit's journey in tech and design.",
+      "author": {
+        "@type": "Person",
+        "name": "Sughosh Dixit"
+      },
+      "blogPost": posts.slice(0, 10).map(post => ({
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt,
+        "datePublished": post.publishedAt,
+        "author": {
+          "@type": "Person",
+          "name": post.author.name
+        },
+        "image": post.coverImage,
+        "url": `https://sughoshdixit.com/blog/${post.slug}`
+      }))
+    };
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Blog | Sughosh Dixit"
+        description="Thoughts, insights, and updates from my journey in tech and design. Explore articles on AI, software development, and innovation."
+        canonicalUrl="/blog"
+        ogType="website"
+      />
+      
+      {/* Structured Data for Blog */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(createBlogPostingStructuredData())}
+        </script>
+      </Helmet>
+      
       <Header />
       <main className="flex-grow pt-24">
         <section className="container page-container">

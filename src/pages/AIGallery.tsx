@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { GalleryHeader } from "@/components/gallery/GalleryHeader";
 import { AdminUploadSection } from "@/components/gallery/AdminUploadSection";
+import { SEOHead } from "@/components/seo/SEOHead";
 import { useGalleryData } from "@/hooks/useGalleryData";
 import { Card } from "@/components/ui/card";
 
@@ -19,6 +20,12 @@ const AIGalleryPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="AI Gallery | Sughosh Dixit"
+        description="Explore my personal gallery showcasing AI-generated art, creative projects, and visual experiments in music, football, and technology."
+        canonicalUrl="/ai-gallery"
+        ogImage="/lovable-uploads/b007e0ae-455f-476f-939e-8b0f83230810.png"
+      />
       <Header />
       <main className="flex-grow pt-24">
         <section className="section-container bg-muted/30">
