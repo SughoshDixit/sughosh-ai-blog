@@ -26,15 +26,17 @@ export const BlogPostCard = ({ post, loadedImages, onImageLoad }: BlogPostCardPr
   return (
     <Card key={post.id} className="glass-card hover-scale overflow-hidden flex flex-col">
       <div className="aspect-video relative overflow-hidden">
-        <img
-          src={post.coverImage}
-          alt={post.title}
-          className={cn(
-            "w-full h-full object-cover transition-all duration-700",
-            loadedImages[post.id] ? "image-blur-loaded" : "image-blur-loading"
-          )}
-          onLoad={() => onImageLoad(post.id)}
-        />
+        <Link to={`/blog/${post.slug}`}>
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            className={cn(
+              "w-full h-full object-cover transition-all duration-700",
+              loadedImages[post.id] ? "image-blur-loaded" : "image-blur-loading"
+            )}
+            onLoad={() => onImageLoad(post.id)}
+          />
+        </Link>
         <Badge className="absolute top-4 left-4">{post.category}</Badge>
       </div>
       

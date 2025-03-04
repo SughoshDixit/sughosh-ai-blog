@@ -11,76 +11,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Heart, Share2, Calendar, Clock, ArrowLeft, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { getPostBySlug, getCommentsByPostId } from "@/services/blogService";
 import { BlogPost, Comment } from "@/types";
-import { useAuth } from "@/hooks/useAuth";
-
-// Mock blog post data
-const mockPost: BlogPost = {
-  id: "1",
-  title: "The Future of Web Development: What's Coming in 2023",
-  slug: "future-web-development-2023",
-  excerpt: "Explore the upcoming trends and technologies shaping the future of web development in 2023 and beyond.",
-  content: `
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
-    
-    <h2>The Rise of Web Components</h2>
-    
-    <p>Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-    
-    <p>Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
-    
-    <h2>AI-Powered Development Tools</h2>
-    
-    <p>Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
-    
-    <p>Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    
-    <h2>Server Components and the Future of Rendering</h2>
-    
-    <p>Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.</p>
-    
-    <p>Nunc ut sem vitae risus tristique posuere. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
-    
-    <h2>Conclusion</h2>
-    
-    <p>Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
-  `,
-  coverImage: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-  category: "Web Development",
-  publishedAt: "2023-05-15T10:00:00Z",
-  likes: 42,
-  author: {
-    name: "Alex Johnson",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-};
-
-// Mock comments data
-const mockComments: Comment[] = [
-  {
-    id: "comment-1",
-    postId: "1",
-    userId: "user-2",
-    userName: "Jane Smith",
-    userAvatar: "https://randomuser.me/api/portraits/women/65.jpg",
-    content: "Great article! I especially liked the part about web components. Can't wait to see how they evolve in the coming years.",
-    createdAt: "2023-05-16T14:23:00Z",
-  },
-  {
-    id: "comment-2",
-    postId: "1",
-    userId: "user-3",
-    userName: "Mark Wilson",
-    userAvatar: "https://randomuser.me/api/portraits/men/41.jpg",
-    content: "I think AI-powered development tools will completely change the workflow for developers. We're already seeing some amazing things with GitHub Copilot.",
-    createdAt: "2023-05-17T09:45:00Z",
-  },
-];
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const { toast } = useToast();
-  const { user, isAuthenticated } = useAuth();
   
   const [post, setPost] = useState<BlogPost | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -90,15 +26,19 @@ const BlogPostPage = () => {
   const [likeCount, setLikeCount] = useState(0);
   const [commentText, setCommentText] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Simplified auth state
 
   // Fetch post and comments
   useEffect(() => {
-    // Simulate API call
+    if (!slug) return;
+    
+    // Simulate API call with delay
     const timer = setTimeout(() => {
-      if (slug === mockPost.slug) {
-        setPost(mockPost);
-        setComments(mockComments);
-        setLikeCount(mockPost.likes);
+      const fetchedPost = getPostBySlug(slug);
+      if (fetchedPost) {
+        setPost(fetchedPost);
+        setLikeCount(fetchedPost.likes);
+        setComments(getCommentsByPostId(fetchedPost.id));
       }
       setIsLoading(false);
     }, 1000);
@@ -153,14 +93,14 @@ const BlogPostPage = () => {
 
     setIsCommenting(true);
 
-    // Simulate API call
+    // Simulate API call with delay
     setTimeout(() => {
       const newComment: Comment = {
         id: `comment-${Date.now()}`,
         postId: post?.id || "",
-        userId: user?.id || "",
-        userName: user?.name || "",
-        userAvatar: user?.avatar,
+        userId: "current-user",
+        userName: "Current User",
+        userAvatar: "https://randomuser.me/api/portraits/men/85.jpg",
         content: commentText,
         createdAt: new Date().toISOString(),
       };
@@ -343,40 +283,31 @@ const BlogPostPage = () => {
             <div className="mb-16">
               <h3 className="text-xl font-bold mb-8">Comments ({comments.length})</h3>
               
-              {isAuthenticated ? (
-                <div className="mb-8">
-                  <Textarea
-                    placeholder="Add a comment..."
-                    className="mb-4"
-                    value={commentText}
-                    onChange={(e) => setCommentText(e.target.value)}
-                  />
-                  <Button
-                    onClick={handleSubmitComment}
-                    disabled={isCommenting || !commentText.trim()}
-                    className="flex items-center gap-2"
-                  >
-                    {isCommenting ? (
-                      <>
-                        <div className="h-4 w-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                        <span>Posting...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="h-4 w-4" />
-                        <span>Post Comment</span>
-                      </>
-                    )}
-                  </Button>
-                </div>
-              ) : (
-                <div className="glass-card p-6 text-center mb-8">
-                  <p className="mb-4">Sign in to join the conversation</p>
-                  <Button asChild>
-                    <Link to="/login">Sign In</Link>
-                  </Button>
-                </div>
-              )}
+              <div className="mb-8">
+                <Textarea
+                  placeholder="Add a comment..."
+                  className="mb-4"
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+                />
+                <Button
+                  onClick={handleSubmitComment}
+                  disabled={isCommenting || !commentText.trim()}
+                  className="flex items-center gap-2"
+                >
+                  {isCommenting ? (
+                    <>
+                      <div className="h-4 w-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                      <span>Posting...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      <span>Post Comment</span>
+                    </>
+                  )}
+                </Button>
+              </div>
               
               {comments.length === 0 ? (
                 <div className="text-center py-8">
