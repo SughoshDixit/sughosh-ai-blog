@@ -29,20 +29,25 @@ export const Hero: React.FC = () => {
           Digital Innovator
         </h2>
         
-        <p className="text-xl max-w-2xl mx-auto mb-6 text-muted-foreground">
-          <span className="inline-flex items-center gap-2">
-            <Music className="h-5 w-5 text-accent animate-pulse" /> 
-            <span className="gold-accent">Footballer and musician</span>
-          </span> by <span className="gold-gradient">passion</span>, 
-          <span className="inline-flex items-center gap-2 mx-1">
-            <Briefcase className="h-5 w-5 text-accent" /> 
-            <span className="gold-accent">data science</span>
-          </span> by <span className="gold-gradient">profession</span> 💼, 
-          <span className="inline-flex items-center gap-2 mx-1">
-            <Globe className="h-5 w-5 text-accent animate-pulse" /> 
-            <span className="gold-accent">civilizationalist</span>
-          </span> by <span className="gold-gradient">ideology</span>
-        </p>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-10 max-w-3xl mx-auto">
+          <div className="flex flex-col items-center p-4 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/20 transition-all hover-lift subtle-shadow">
+            <Music className="h-7 w-7 text-accent mb-2" />
+            <h3 className="gold-accent text-lg mb-1">Footballer & Musician</h3>
+            <p className="gold-gradient text-sm">by passion ✨</p>
+          </div>
+          
+          <div className="flex flex-col items-center p-4 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/20 transition-all hover-lift subtle-shadow">
+            <Briefcase className="h-7 w-7 text-accent mb-2" />
+            <h3 className="gold-accent text-lg mb-1">Data Science</h3>
+            <p className="gold-gradient text-sm">by profession 💼</p>
+          </div>
+          
+          <div className="flex flex-col items-center p-4 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/20 transition-all hover-lift subtle-shadow">
+            <Globe className="h-7 w-7 text-accent mb-2" />
+            <h3 className="gold-accent text-lg mb-1">Civilizationalist</h3>
+            <p className="gold-gradient text-sm">by ideology 🌍</p>
+          </div>
+        </div>
         
         <Button onClick={scrollToAbout} size="lg" className="gap-2 hover-scale">
           Discover More
