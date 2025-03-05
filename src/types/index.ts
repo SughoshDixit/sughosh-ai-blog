@@ -1,4 +1,3 @@
-
 export type BlogPost = {
   id: string;
   title: string;
@@ -8,12 +7,13 @@ export type BlogPost = {
   coverImage: string;
   category: string;
   publishedAt: string;
-  updatedAt?: string; // Added this optional property
+  updatedAt?: string;
   likes: number;
   author: {
     name: string;
     avatar: string;
   };
+  hasNotebooks?: boolean;
 };
 
 export type User = {

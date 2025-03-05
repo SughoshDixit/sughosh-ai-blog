@@ -11,12 +11,14 @@ import { SEOHead } from "@/components/seo/SEOHead";
 import { getMockPosts } from "@/services/blogService";
 import { BlogPost } from "@/types";
 import { Helmet } from "react-helmet-async";
+import { Hero } from "@/components/sections/Hero";
 
 const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Simulate fetching posts
   useEffect(() => {
@@ -35,20 +37,32 @@ const BlogPage = () => {
     }));
   };
 
-  // Filter posts based on search query
-  const filteredPosts = posts.filter(post => 
-    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleCategoryChange = (category: string | null) => {
+    setSelectedCategory(category);
+  };
+
+  // Filter posts based on search query and selected category
+  const filteredPosts = posts.filter(post => {
+    const matchesSearch = 
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  // Get unique categories for filters
+  const categories = Array.from(new Set(posts.map(post => post.category)));
 
   // Create JSON-LD structured data for BlogPosting
   const createBlogPostingStructuredData = () => {
     return {
       "@context": "https://schema.org",
       "@type": "Blog",
-      "headline": "Sughosh Dixit's Blog",
-      "description": "Thoughts, insights, and updates from Sughosh Dixit's journey in tech and design.",
+      "headline": "Sughosh Dixit's Data Science Blog",
+      "description": "Data Science research, analysis, and insights shared through articles and interactive Python notebooks.",
       "author": {
         "@type": "Person",
         "name": "Sughosh Dixit"
@@ -71,9 +85,9 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Blog | Sughosh Dixit"
-        description="Thoughts, insights, and updates from my journey in tech and design. Explore articles on AI, software development, and innovation."
-        canonicalUrl="/blog"
+        title="Sughosh Dixit | Data Science & Analysis Blog"
+        description="Explore data science research, analysis, and insights through articles and interactive Python notebooks by Sughosh Dixit."
+        canonicalUrl="/"
         ogType="website"
       />
       
@@ -85,18 +99,24 @@ const BlogPage = () => {
       </Helmet>
       
       <Header />
-      <main className="flex-grow pt-24">
-        <section className="container page-container">
+      <main className="flex-grow">
+        <Hero />
+        
+        <section className="container page-container py-20" id="blog-section">
           <div className="mb-16 text-center">
-            <h1 className="section-title">Blog</h1>
+            <h2 className="section-title">Latest Research & Analysis</h2>
             <p className="section-subtitle mx-auto">
-              Thoughts, insights, and updates from my journey in tech and design.
+              Exploring data science concepts through articles and interactive Python notebooks
             </p>
           </div>
 
           <div className="flex flex-col md:flex-row justify-between mb-10 gap-4">
             <BlogSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-            <BlogFilters />
+            <BlogFilters 
+              categories={categories} 
+              selectedCategory={selectedCategory}
+              onCategoryChange={handleCategoryChange}
+            />
           </div>
 
           {loading ? (

@@ -24,6 +24,7 @@ const BlogPostPage = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Simplified auth state
+  const [notebooks, setNotebooks] = useState<any[]>([]);
 
   // Fetch post and comments
   useEffect(() => {
@@ -40,6 +41,20 @@ const BlogPostPage = () => {
         // Only update state if component is still mounted
         if (isMounted && fetchedPost) {
           setPost(fetchedPost);
+          
+          // Check if this post has associated notebooks
+          // This is mockup data - in a real implementation, we would fetch from the backend
+          if (fetchedPost.hasNotebooks) {
+            setNotebooks([
+              {
+                id: "notebook-1",
+                title: "Data Analysis with Pandas",
+                description: "Interactive notebook showing data preprocessing and analysis",
+                url: "https://colab.research.google.com/github/sughoshdixit/notebooks/blob/main/data_analysis.ipynb",
+                thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500"
+              }
+            ]);
+          }
           
           // Now fetch comments with the post ID
           const fetchedComments = await getCommentsByPostId(fetchedPost.id);
@@ -97,7 +112,10 @@ const BlogPostPage = () => {
           <PostImage src={post.coverImage} alt={post.title} />
 
           <div className="max-w-3xl mx-auto">
-            <PostContent content={post.content} />
+            <PostContent 
+              content={post.content} 
+              notebooks={notebooks}
+            />
 
             <PostActions initialLikes={post.likes} isAuthenticated={isAuthenticated} />
 

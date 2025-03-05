@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
-import { Menu, X, MessageSquareText } from "lucide-react";
+import { Menu, X, BarChart2, BookOpen, Info, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LoginButton } from "@/components/auth/LoginButton";
 import { Helmet } from "react-helmet-async";
@@ -27,16 +27,10 @@ export function Header() {
   }, [location.pathname]);
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/#about" },
-    { name: "Projects", path: "/#projects" },
-    { name: "Fun Facts", path: "/#fun-facts" },
-    { name: "GitHub", path: "/#github-stats" },
-    { name: "YouTube", path: "/#youtube" },
-    { name: "Achievements", path: "/#achievements" },
-    { name: "Contact", path: "/#contact" },
-    { name: "Blog", path: "/blog" },
-    { name: "AI Gallery", path: "/ai-gallery" },
+    { name: "Blog", path: "/", icon: <BookOpen className="h-4 w-4 mr-2" /> },
+    { name: "About", path: "/about", icon: <Info className="h-4 w-4 mr-2" /> },
+    { name: "Data Gallery", path: "/ai-gallery", icon: <LayoutGrid className="h-4 w-4 mr-2" /> },
+    { name: "Chatbot", path: "/chatbot", icon: <BarChart2 className="h-4 w-4 mr-2" /> },
   ];
 
   // Create organization structured data for the website
@@ -57,11 +51,11 @@ export function Header() {
   const websiteStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Sughosh Dixit",
+    "name": "Sughosh Dixit's Data Science Blog",
     "url": "https://sughoshdixit.com",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://sughoshdixit.com/blog?search={search_term_string}",
+      "target": "https://sughoshdixit.com/?search={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -90,7 +84,7 @@ export function Header() {
           <div className="flex items-center justify-between">
             <Link 
               to="/" 
-              className="text-xl text-primary dark:text-primary transition-all duration-300 hover:opacity-80 transform hover:-rotate-1"
+              className="text-xl text-primary dark:text-primary transition-all duration-300 hover:opacity-80 transform hover:-rotate-1 flex items-center"
               style={{ 
                 fontFamily: "'Dancing Script', cursive",
                 textShadow: "0px 1px 2px rgba(0,0,0,0.15)",
@@ -98,7 +92,8 @@ export function Header() {
               }}
               aria-label="Sughosh Dixit Home"
             >
-              Sughosh Dixit
+              <span className="mr-2">Sughosh Dixit</span>
+              <span className="text-sm font-normal opacity-70 hidden md:inline">| Data Science Chronicle</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -108,15 +103,15 @@ export function Header() {
                   key={item.name}
                   to={item.path}
                   className={cn(
-                    "text-sm font-medium transition-all duration-300",
+                    "text-sm font-medium transition-all duration-300 flex items-center",
                     "relative after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[2px] after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100 after:transition-transform after:duration-300 after:bg-primary dark:after:bg-primary",
-                    location.pathname === item.path || 
-                    (location.pathname === '/' && item.path.startsWith('/#'))
+                    location.pathname === item.path
                       ? "text-primary dark:text-primary after:scale-x-100 after:origin-bottom-left"
                       : "text-primary/70 dark:text-primary/70 hover:text-primary dark:hover:text-primary"
                   )}
                   aria-current={location.pathname === item.path ? "page" : undefined}
                 >
+                  {item.icon}
                   {item.name}
                 </Link>
               ))}
@@ -160,14 +155,14 @@ export function Header() {
                     key={item.name}
                     to={item.path}
                     className={cn(
-                      "text-base font-medium px-3 py-2 rounded-md transition-all duration-200",
-                      location.pathname === item.path || 
-                      (location.pathname === '/' && item.path.startsWith('/#'))
+                      "text-base font-medium px-3 py-2 rounded-md transition-all duration-200 flex items-center",
+                      location.pathname === item.path
                         ? "bg-primary/20 dark:bg-primary/10 text-primary dark:text-primary"
                         : "text-primary/80 dark:text-primary/80 hover:bg-primary/10 dark:hover:bg-primary/5 hover:text-primary dark:hover:text-primary"
                     )}
                     aria-current={location.pathname === item.path ? "page" : undefined}
                   >
+                    {item.icon}
                     {item.name}
                   </Link>
                 ))}

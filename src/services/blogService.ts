@@ -1,3 +1,4 @@
+
 // Updated to use the Python backend API
 
 import { BlogPost, Comment } from "@/types";
@@ -76,10 +77,68 @@ export const getCommentsByPostId = async (postId: string): Promise<Comment[]> =>
   }
 };
 
+// Get notebooks for a post
+export const getNotebooksByPostId = async (postId: string): Promise<any[]> => {
+  try {
+    const response = await fetch(`http://localhost:5000/api/blog/notebooks/${postId}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching notebooks for post ${postId}:`, error);
+    // Return empty array as fallback
+    return [];
+  }
+};
+
 // Updated mock posts data with real content (kept as fallback)
 export const getMockPosts = (): BlogPost[] => [
   {
     id: "1",
+    title: "Analyzing Indian GDP Growth Patterns",
+    slug: "analyzing-indian-gdp-growth-patterns",
+    excerpt: "A comprehensive data-driven analysis of India's economic growth patterns and factors influencing GDP fluctuations over the past decade.",
+    content: `
+      <p>India's economic journey over the past decade presents a fascinating case study for data scientists. In this analysis, I've used Python and various data science libraries to uncover patterns and insights in the GDP growth trajectory.</p>
+      
+      <h2>Data Collection and Preparation</h2>
+      
+      <p>I gathered quarterly GDP data from 2010 to 2023, along with various economic indicators including inflation rates, foreign direct investment, manufacturing output, service sector growth, and agricultural production. The dataset required significant cleaning and normalization to account for seasonal adjustments and reporting inconsistencies.</p>
+      
+      <p>{{notebook:notebook-1}}</p>
+      
+      <h2>Key Findings</h2>
+      
+      <p>The analysis revealed several interesting patterns:</p>
+      
+      <ul>
+        <li>Service sector growth has consistently outpaced overall GDP growth by an average of 2.3% annually</li>
+        <li>Agricultural output shows strong correlation with monsoon patterns, with a 3-month lag effect on GDP figures</li>
+        <li>Manufacturing shows increased sensitivity to global supply chain disruptions post-2020</li>
+        <li>FDI inflows demonstrate a strong positive correlation (0.78) with GDP growth in subsequent quarters</li>
+      </ul>
+      
+      <h2>Predictive Modeling</h2>
+      
+      <p>Using these insights, I built several predictive models using time series analysis techniques. The ARIMA model with exogenous variables performed best, achieving an RMSE of 0.42 percentage points when predicting quarterly GDP growth.</p>
+    `,
+    coverImage: "https://images.unsplash.com/photo-1604594849809-dfedbc827105",
+    category: "Economic Analysis",
+    publishedAt: "2023-10-15T14:20:00Z",
+    updatedAt: "2023-11-02T10:15:00Z",
+    likes: 142,
+    hasNotebooks: true,
+    author: {
+      name: "Sughosh Dixit",
+      avatar: "/lovable-uploads/07f53509-f9a1-4c27-923a-c1cc0bac748b.png",
+    },
+  },
+  {
+    id: "2",
     title: "Gratitude for Being Born in the Ancient Civilization of Bharatavarsha",
     slug: "gratitude-for-being-born-in-the-ancient-civilization-of-bharatavarsha",
     excerpt: "Reflecting on the privilege of being born in Bharatavarsha (India), a land of ancient wisdom, spirituality, and a continuous civilization spanning thousands of years.",
@@ -109,7 +168,7 @@ export const getMockPosts = (): BlogPost[] => [
     },
   },
   {
-    id: "2",
+    id: "3",
     title: "Being a Liverpool Fan: An Emotional Rollercoaster",
     slug: "being-ardent-liverpool-fan",
     excerpt: "The highs and lows of being a devoted Liverpool Football Club supporter through the years - a personal reflection.",
@@ -133,6 +192,50 @@ export const getMockPosts = (): BlogPost[] => [
     publishedAt: "2022-06-20T09:30:00Z",
     updatedAt: "2022-07-15T14:45:00Z",
     likes: 89,
+    author: {
+      name: "Sughosh Dixit",
+      avatar: "/lovable-uploads/07f53509-f9a1-4c27-923a-c1cc0bac748b.png",
+    },
+  },
+  {
+    id: "4",
+    title: "Sentiment Analysis of COVID-19 Tweets: A Machine Learning Approach",
+    slug: "sentiment-analysis-covid19-tweets",
+    excerpt: "Applying NLP and machine learning techniques to analyze public sentiment during different phases of the COVID-19 pandemic through Twitter data.",
+    content: `
+      <p>The COVID-19 pandemic generated unprecedented public discourse on social media platforms. In this study, I collected over 500,000 tweets related to COVID-19 from January 2020 to December 2021 to analyze how public sentiment evolved throughout different phases of the pandemic.</p>
+      
+      <h2>Methodology</h2>
+      
+      <p>Using Python's Natural Language Processing libraries, I preprocessed the tweets by removing stopwords, URLs, and special characters. I then applied tokenization, stemming, and vectorization to prepare the data for analysis.</p>
+      
+      <p>For sentiment classification, I implemented and compared multiple models:</p>
+      <ul>
+        <li>BERT (Bidirectional Encoder Representations from Transformers)</li>
+        <li>Random Forest classifier</li>
+        <li>Naive Bayes classifier</li>
+        <li>LSTM (Long Short-Term Memory) neural network</li>
+      </ul>
+      
+      <p>{{notebook:notebook-1}}</p>
+      
+      <h2>Key Findings</h2>
+      
+      <p>The BERT model achieved the highest accuracy at 87.3%, confirming its effectiveness for contextual understanding of text. Temporal analysis revealed several interesting patterns:</p>
+      
+      <ul>
+        <li>Sentiment negativity peaked during announcements of lockdowns and case surges</li>
+        <li>Vaccine announcements correlated with significant positive sentiment shifts</li>
+        <li>Public sentiment became increasingly polarized over time, with fewer neutral expressions</li>
+        <li>Geographical differences in sentiment aligned with varying pandemic impacts and policy responses</li>
+      </ul>
+    `,
+    coverImage: "https://images.unsplash.com/photo-1584483766114-2cea6facdf57",
+    category: "Machine Learning",
+    publishedAt: "2023-02-18T11:30:00Z",
+    updatedAt: "2023-03-05T16:45:00Z",
+    likes: 156,
+    hasNotebooks: true,
     author: {
       name: "Sughosh Dixit",
       avatar: "/lovable-uploads/07f53509-f9a1-4c27-923a-c1cc0bac748b.png",
