@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowDown, Sparkles, Music, Briefcase, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -30,7 +30,18 @@ export const Hero: React.FC = () => {
         </h2>
         
         <p className="text-xl max-w-2xl mx-auto mb-6 text-muted-foreground">
-          Footballer and musician by passion, data science by profession 💼, civilizationalist by ideology
+          <span className="inline-flex items-center gap-2">
+            <Music className="h-5 w-5 text-accent animate-pulse" /> 
+            <span className="gold-accent">Footballer and musician</span>
+          </span> by <span className="gold-gradient">passion</span>, 
+          <span className="inline-flex items-center gap-2 mx-1">
+            <Briefcase className="h-5 w-5 text-accent" /> 
+            <span className="gold-accent">data science</span>
+          </span> by <span className="gold-gradient">profession</span> 💼, 
+          <span className="inline-flex items-center gap-2 mx-1">
+            <Globe className="h-5 w-5 text-accent animate-pulse" /> 
+            <span className="gold-accent">civilizationalist</span>
+          </span> by <span className="gold-gradient">ideology</span>
         </p>
         
         <Button onClick={scrollToAbout} size="lg" className="gap-2 hover-scale">
