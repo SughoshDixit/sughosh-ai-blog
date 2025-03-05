@@ -29,7 +29,7 @@ export function Header() {
   const navItems = [
     { name: "Blog", path: "/", icon: <BookOpen className="h-4 w-4 mr-2" /> },
     { name: "About", path: "/about", icon: <Info className="h-4 w-4 mr-2" /> },
-    { name: "Data Gallery", path: "/ai-gallery", icon: <LayoutGrid className="h-4 w-4 mr-2" /> },
+    { name: "AI Gallery", path: "/ai-gallery", icon: <LayoutGrid className="h-4 w-4 mr-2" /> },
     { name: "Chatbot", path: "/chatbot", icon: <BarChart2 className="h-4 w-4 mr-2" /> },
   ];
 

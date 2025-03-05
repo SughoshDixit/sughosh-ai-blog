@@ -55,24 +55,24 @@ export const Hero: React.FC = () => {
         {/* Call to action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
-            asChild
             size="lg" 
             className="gap-2 px-6 py-6 text-base bg-primary hover:bg-primary/90 shadow-md transition-all duration-300 hover:-translate-y-1"
+            onClick={scrollToAbout}
           >
-            <Link to="/about">
-              Learn About Me
-              <ArrowDown className="h-5 w-5" />
-            </Link>
+            Learn About Me
+            <ArrowDown className="h-5 w-5" />
           </Button>
           
           <Button 
             variant="outline" 
             size="lg" 
             className="gap-2 px-6 py-6 text-base border-primary text-primary hover:bg-primary/10 shadow-md transition-all duration-300 hover:-translate-y-1"
-            onClick={() => window.scrollTo({ top: 800, behavior: 'smooth' })}
+            asChild
           >
-            Explore My Blog
-            <ArrowDown className="h-5 w-5" />
+            <Link to="/">
+              Explore My Blog
+              <ArrowDown className="h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>
