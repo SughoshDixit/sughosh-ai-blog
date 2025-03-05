@@ -26,12 +26,12 @@ export default {
 				script: ['Dancing Script', 'cursive'],
 			},
 			colors: {
-				'deep-blue': '#2055be',  // Rich blue
-				'soft-blue': '#1a9ca8',  // Teal blue
+				'deep-blue': '#541c8c',  // Updated to requested purple
+				'soft-blue': '#541c8c',  // Updated to requested purple
 				'soft-pink': '#f8d8e7',  // Soft pink color
-				'magenta': '#D946EF',    // Vibrant magenta
-				'light-magenta': '#E879F9', // Lighter magenta for dark mode
-				'dark-magenta': '#A21CAF', // Darker magenta for light mode
+				'magenta': '#541c8c',    // Updated to requested purple
+				'light-magenta': '#6e31a0', // Lighter version of #541c8c
+				'dark-magenta': '#3e1366', // Darker version of #541c8c
 				'accent-gold': '#F59E0B', // Gold accent
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
