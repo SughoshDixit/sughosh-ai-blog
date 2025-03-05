@@ -106,6 +106,10 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  input, textarea, select {
+    @apply text-[#868e96] dark:text-white;
+  }
 }
 
 @layer components {
@@ -192,14 +196,15 @@
   }
   
   .purple-form-input {
-    @apply border-primary/30 text-[#868e96] dark:text-white 
-           focus:border-primary focus:ring-primary hover:border-primary/70 transition-colors;
+    @apply border-primary/30 focus:border-primary focus:ring-primary 
+           hover:border-primary/70 transition-colors
+           text-[#868e96] dark:text-white;
   }
   
   .purple-form-textarea {
-    @apply min-h-[120px] border-primary/30 text-[#868e96] dark:text-white 
-           focus:border-primary focus:ring-primary hover:border-primary/70 transition-colors 
-           resize-y p-3;
+    @apply min-h-[120px] border-primary/30 focus:border-primary 
+           focus:ring-primary hover:border-primary/70 transition-colors 
+           resize-y p-3 text-[#868e96] dark:text-white;
   }
 }
 
