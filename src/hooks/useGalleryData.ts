@@ -68,14 +68,14 @@ const staticGalleryItems: GalleryItem[] = [
     id: 8,
     title: "Football Training",
     description: "Professional football practice at Real Madrid's stadium.",
-    imageUrl: "/lovable-uploads/8e4fef83-79c2-412a-97ad-0ed0a145e47d.png",
+    imageUrl: "/lovable-uploads/79623cf2-e704-4f84-999d-023a5da062dc.png",
     type: "image"
   },
   {
     id: 9,
     title: "Concert Headliner",
     description: "Delivering an energetic vocal performance at a major concert venue.",
-    imageUrl: "/lovable-uploads/79623cf2-e704-4f84-999d-023a5da062dc.png",
+    imageUrl: "/lovable-uploads/8e4fef83-79c2-412a-97ad-0ed0a145e47d.png",
     type: "image"
   },
   {
