@@ -5,13 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 export const Hero: React.FC = () => {
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="relative pt-32 md:pt-40 pb-20 min-h-screen flex items-center justify-center">
       {/* Background patterns and decorative elements */}
@@ -57,10 +50,12 @@ export const Hero: React.FC = () => {
           <Button 
             size="lg" 
             className="gap-2 px-6 py-6 text-base bg-primary hover:bg-primary/90 shadow-md transition-all duration-300 hover:-translate-y-1"
-            onClick={scrollToAbout}
+            asChild
           >
-            Learn About Me
-            <ArrowDown className="h-5 w-5" />
+            <Link to="/about">
+              Learn About Me
+              <ArrowDown className="h-5 w-5" />
+            </Link>
           </Button>
           
           <Button 
