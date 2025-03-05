@@ -15,4 +15,11 @@
   .gallery-bg {
     @apply bg-gradient-to-br from-white to-primary/10 dark:from-black dark:to-primary/20;
   }
+
+  .bg-grid-pattern {
+    background-size: 100px 100px;
+    background-image: 
+      linear-gradient(to right, rgba(var(--primary-rgb), 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(var(--primary-rgb), 0.05) 1px, transparent 1px);
+  }
 }

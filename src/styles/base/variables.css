@@ -1,6 +1,8 @@
 
 @layer base {
   :root {
+    --primary-rgb: 84, 28, 140;  /* RGB for #541c8c */
+    
     --background: 0 0% 100%; /* Pure white */
     --foreground: 272 70% 33%; /* #541c8c - Dark Purple for main text */
 
@@ -47,6 +49,8 @@
   }
 
   .dark {
+    --primary-rgb: 161, 122, 217;  /* RGB for lighter purple in dark mode */
+    
     --background: 0 0% 0%; /* Pure black */
     --foreground: 272 90% 75%; /* Lighter purple for dark mode */
 

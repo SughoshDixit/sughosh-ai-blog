@@ -11,4 +11,20 @@
   .gallery-card-hover {
     @apply transition-all duration-300 hover:shadow-md hover:shadow-primary/20 dark:hover:shadow-primary/20;
   }
+  
+  .card-hover {
+    @apply transition-all duration-300 
+           hover:shadow-md hover:shadow-primary/20 dark:hover:shadow-primary/20 
+           hover:border-primary/30 dark:hover:border-primary/30;
+  }
+  
+  .card-primary {
+    @apply bg-background border border-primary/20 dark:border-primary/20 
+           rounded-lg p-6 shadow-sm transition-all duration-300;
+  }
+  
+  .card-secondary {
+    @apply bg-muted border border-primary/10 dark:border-primary/10 
+           rounded-lg p-6 shadow-sm transition-all duration-300;
+  }
 }
