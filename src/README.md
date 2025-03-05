@@ -122,6 +122,47 @@ const firebaseConfig = {
 3. Choose security rules (start with test mode for development)
 4. Set up CORS configuration if needed
 
+## Making the Chatbot Functional
+
+The chatbot feature requires both the frontend React app and the Python backend server to be running simultaneously:
+
+1. **Start the Python Backend**:
+   ```bash
+   cd backend
+   python app.py
+   ```
+   This will start the Flask server on port 5000.
+
+2. **Ensure the Frontend is Connected**:
+   The frontend is pre-configured to connect to `http://localhost:5000/api/chatbot` for chatbot responses.
+
+3. **Customize Chatbot Responses**:
+   To make the chatbot provide custom responses about yourself:
+   - Open `backend/app.py`
+   - Locate the `personal_info` dictionary
+   - Update the values with your own information:
+
+   ```python
+   personal_info = {
+     "name": "Your Name",
+     "occupation": "Your Occupation",
+     "skills": ["Skill 1", "Skill 2", ...],
+     "interests": ["Interest 1", "Interest 2", ...],
+     "achievements": ["Achievement 1", "Achievement 2", ...],
+     # Update other fields as needed
+   }
+   ```
+
+4. **Authentication**:
+   The chatbot requires users to be authenticated via Firebase Google Authentication.
+   Make sure your Firebase project has Google Authentication enabled as described in the Firebase Configuration section.
+
+5. **Troubleshooting**:
+   - If the chatbot doesn't respond, check your browser console for any CORS or network errors
+   - Ensure both the frontend and backend servers are running
+   - Verify your Firebase configuration in `.env.local` is correct
+   - Check that you're signed in (authentication is required to use the chatbot)
+
 ## Customization Guide
 
 ### 1. Personal Information
@@ -141,6 +182,28 @@ Replace the placeholder images with your own:
 - Profile image in the About section
 - Project images in the Projects section
 - AI Gallery images
+
+## Embedding Python Notebooks in Blog Posts
+
+The blog system supports embedding Python notebooks (Jupyter notebooks) in your blog posts:
+
+1. Create your notebook (.ipynb file)
+2. Upload the notebook to a public URL or GitHub repository
+3. In your blog post content, use the NotebookEmbed component with the URL to your notebook:
+
+```html
+<NotebookEmbed src="URL-TO-YOUR-NOTEBOOK" />
+```
+
+For example, in your blog post content:
+
+```html
+<p>Here's the analysis of the dataset:</p>
+<NotebookEmbed src="https://github.com/yourusername/repository/blob/main/notebook.ipynb" />
+<p>As you can see from the results above...</p>
+```
+
+The blog system will automatically render the notebook inline with your blog post content.
 
 ## Development
 
