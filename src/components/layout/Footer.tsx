@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div>
             <h3 className="text-lg font-bold mb-1">Sughosh Dixit</h3>
-            <p className="text-sm text-muted-foreground">Digital Innovator</p>
+            <p className="text-sm text-muted-foreground">Data Scientist</p>
           </div>
           
           <div className="my-4 md:my-0 flex items-center gap-2">

@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import os
@@ -24,7 +23,7 @@ CORS(app)  # Enable CORS for all routes
 # Define your personal information for the chatbot to reference
 personal_info = {
   "name": "Sughosh Dixit",
-  "occupation": "AI Enthusiast & Digital Innovator",
+  "occupation": "Data Scientist",
   "skills": [
     "Data Science", 
     "Web Development", 
