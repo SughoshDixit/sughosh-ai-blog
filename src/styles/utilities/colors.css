@@ -1,0 +1,10 @@
+
+@layer components {
+  .accent-border {
+    @apply border-accent/50;
+  }
+  
+  .accent-highlight {
+    @apply bg-accent/10 text-accent;
+  }
+}

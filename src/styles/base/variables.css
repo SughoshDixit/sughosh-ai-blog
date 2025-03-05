@@ -1,0 +1,92 @@
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 272 70% 33%; /* #541c8c - Dark Purple for main text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 272 70% 33%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 272 70% 33%;
+
+    --primary: 272 70% 33%; /* #541c8c - Dark Purple as primary */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 272 65% 38%; /* Slightly lighter purple shade as secondary */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 272 20% 95%;
+    --muted-foreground: 272 30% 40%;
+
+    --accent: 45 90% 55%; /* Gold accent */
+    --accent-foreground: 0 0% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 272 20% 90%;
+    --input: 272 20% 90%;
+    --ring: 272 70% 33%;
+
+    --radius: 0.375rem;
+
+    --sidebar-background: 272 30% 98%;
+    --sidebar-foreground: 272 70% 33%;
+    --sidebar-primary: 272 70% 33%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 272 30% 94%;
+    --sidebar-accent-foreground: 272 70% 30%;
+    --sidebar-border: 272 20% 91%;
+    --sidebar-ring: 272 70% 33%;
+    
+    --deep-blue: 272 80% 45%;  /* Rich purple */
+    --soft-blue: 272 80% 45%;  /* Lavender */
+    --soft-pink: 280 80% 90%;  /* Soft lavender */
+    --gold: 45 90% 55%;        /* Gold accent */
+  }
+
+  .dark {
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 272 90% 75%; /* Lighter purple for dark mode */
+
+    --card: 0 0% 5%;
+    --card-foreground: 272 90% 80%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 272 90% 80%;
+
+    --primary: 272 90% 65%; /* Brighter purple for dark mode */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 272 85% 65%; /* Brighter secondary purple for dark mode */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 272 70% 70%;
+
+    --accent: 45 95% 60%; /* Brighter gold accent */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 272 20% 20%;
+    --input: 272 20% 20%;
+    --ring: 272 90% 65%;
+    
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 272 80% 75%;
+    --sidebar-primary: 272 90% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 272 80% 75%;
+    --sidebar-border: 272 20% 20%;
+    --sidebar-ring: 272 90% 65%;
+    
+    --deep-blue: 272 70% 60%;  /* Brighter rich purple */
+    --soft-blue: 272 70% 55%;  /* Brighter lavender */
+    --soft-pink: 280 80% 90%;  /* Soft lavender */
+    --gold: 45 95% 60%;        /* Brighter gold accent */
+  }
+}

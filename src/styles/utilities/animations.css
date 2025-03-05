@@ -1,0 +1,18 @@
+
+@layer components {
+  .page-transition-enter {
+    @apply animate-fade-in;
+  }
+
+  .page-transition-exit {
+    @apply animate-fade-out;
+  }
+  
+  .image-blur-loading {
+    @apply blur-sm transition-all duration-300;
+  }
+
+  .image-blur-loaded {
+    @apply blur-0;
+  }
+}
