@@ -28,8 +28,11 @@ export const Hero: React.FC = () => {
           AI Enthusiast & Digital Innovator
         </h2>
         
+        <p className="text-xl max-w-2xl mx-auto mb-6 text-muted-foreground">
+          Footballer and musician by passion, data science by profession 💼, civilizationalist by ideology
+        </p>
+        
         <p className="text-xl max-w-2xl mx-auto mb-10 text-muted-foreground">
-          Civilizationalist by ideology, with expertise in AI, data science, and web development. 
           This entire portfolio application is completely designed and generated using AI tools.
         </p>
         
