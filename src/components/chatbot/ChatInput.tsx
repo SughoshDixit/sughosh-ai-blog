@@ -29,7 +29,7 @@ export const ChatInput = ({ onSendMessage, isProcessing }: ChatInputProps) => {
         placeholder="Ask me anything about Sughosh..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        className="flex-1"
+        className="flex-1 purple-form-input"
         disabled={isProcessing}
       />
       <Button 

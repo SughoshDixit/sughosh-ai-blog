@@ -25,6 +25,7 @@ export const UploadForm = ({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           disabled={uploading}
+          className="purple-form-input"
         />
       </div>
       
@@ -35,6 +36,7 @@ export const UploadForm = ({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           disabled={uploading}
+          className="purple-form-input"
         />
       </div>
     </>

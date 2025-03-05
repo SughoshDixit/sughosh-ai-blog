@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -83,7 +82,7 @@ export const CommentSection = ({ comments, postId, isAuthenticated }: CommentSec
       <div className="mb-8">
         <Textarea
           placeholder="Add a comment..."
-          className="mb-4"
+          className="mb-4 purple-form-textarea"
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
           aria-label="Comment text"
@@ -139,4 +138,3 @@ export const CommentSection = ({ comments, postId, isAuthenticated }: CommentSec
     </section>
   );
 };
-
