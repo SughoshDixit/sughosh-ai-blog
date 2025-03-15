@@ -67,7 +67,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       });
 
-      if (error) throw error;
+      if (error) {
+        if (error.message.includes("provider is not enabled")) {
+          toast.error("Google sign-in is not enabled", {
+            description: "Please enable Google authentication in your Supabase project settings.",
+            duration: 6000
+          });
+        } else {
+          throw error;
+        }
+      }
     } catch (error) {
       console.error("Error signing in with Google:", error);
       if (error instanceof Error) {

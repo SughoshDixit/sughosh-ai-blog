@@ -8,6 +8,7 @@ export const LoginButton = () => {
   const { user, isAuthenticated, isLoading, signInWithGoogle, signOut } = useAuth();
 
   const handleSignIn = async () => {
+    toast.info("Attempting to sign in with Google...");
     await signInWithGoogle();
   };
 
