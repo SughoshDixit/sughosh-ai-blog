@@ -64,7 +64,7 @@ export const Hero: React.FC = () => {
             className="gap-2 px-6 py-6 text-base border-primary text-primary hover:bg-primary/10 shadow-md transition-all duration-300 hover:-translate-y-1"
             asChild
           >
-            <Link to="/">
+            <Link to="/blog">
               Explore My Blog
               <ArrowDown className="h-5 w-5" />
             </Link>
