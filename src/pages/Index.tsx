@@ -1,4 +1,3 @@
-
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -15,6 +14,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const Index = () => {
+  console.log("Index page rendering");
   const location = useLocation();
 
   // Smooth scroll to section based on hash

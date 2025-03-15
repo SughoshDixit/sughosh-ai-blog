@@ -16,7 +16,14 @@ import AIGalleryPage from "./pages/AIGallery";
 import { ChatbotButton } from "./components/chatbot/ChatbotButton";
 import AuthCallback from "./components/auth/AuthCallback";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false, // Disable retries to prevent multiple failed requests
+      refetchOnWindowFocus: false, // Disable refetch on window focus to reduce API calls
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -27,7 +34,6 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              {/* Use Index as the main landing page */}
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<BlogPage />} />
@@ -35,7 +41,6 @@ const App = () => (
               <Route path="/chatbot" element={<ChatbotPage />} />
               <Route path="/ai-gallery" element={<AIGalleryPage />} />
               <Route path="/auth/callback" element={<AuthCallback />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             <ChatbotButton />
