@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Heart, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -12,26 +12,8 @@ interface PostActionsProps {
 
 export const PostActions = ({ initialLikes, isAuthenticated }: PostActionsProps) => {
   const { toast } = useToast();
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(initialLikes);
 
-  const handleLike = () => {
-    if (!isAuthenticated) {
-      toast({
-        title: "Authentication required",
-        description: "Please sign in to like this post",
-      });
-      return;
-    }
-
-    setIsLiked(!isLiked);
-    setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
-    
-    toast({
-      title: isLiked ? "Removed like" : "Post liked!",
-      description: isLiked ? "You've removed your like from this post" : "You've liked this post",
-    });
-  };
+  // Removed like functionality that requires authentication
 
   const handleShare = () => {
     // Copy to clipboard
@@ -46,23 +28,7 @@ export const PostActions = ({ initialLikes, isAuthenticated }: PostActionsProps)
   return (
     <div className="flex items-center justify-between mt-12 mb-16">
       <div className="flex gap-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleLike}
-          className={cn(
-            "flex items-center gap-2",
-            isLiked && "bg-primary/10 text-primary"
-          )}
-        >
-          <Heart 
-            className={cn(
-              "h-4 w-4",
-              isLiked && "fill-primary text-primary"
-            )} 
-          />
-          <span>{likeCount}</span>
-        </Button>
+        {/* Removed Like button */}
         
         <Button
           variant="outline"

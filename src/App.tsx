@@ -12,7 +12,8 @@ import BlogPage from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import ChatbotPage from "./pages/Chatbot";
 import AIGalleryPage from "./pages/AIGallery";
-import { ChatbotButton } from "./components/chatbot/ChatbotButton";
+// Commented out ChatbotButton import
+// import { ChatbotButton } from "./components/chatbot/ChatbotButton";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +36,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <ChatbotButton />
+            {/* Removed ChatbotButton component */}
           </BrowserRouter>
         </TooltipProvider>
       </HelmetProvider>
