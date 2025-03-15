@@ -5,18 +5,13 @@ import { Plus } from "lucide-react";
 import { ImageUploader } from "@/components/gallery/ImageUploader";
 import { useAuth } from "@/context/AuthContext";
 
-// Admin email constant
-const ADMIN_EMAIL = "sughoshpdixit@gmail.com";
-
 interface AdminUploadSectionProps {
   onUploadComplete: () => void;
 }
 
 export const AdminUploadSection = ({ onUploadComplete }: AdminUploadSectionProps) => {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  const { user } = useAuth();
-
-  const isAdmin = !!user && ADMIN_EMAIL === user.email;
+  const { isAdmin } = useAuth();
 
   if (!isAdmin) {
     return null;

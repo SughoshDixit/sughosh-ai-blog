@@ -1,11 +1,11 @@
+
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
-import { Menu, X, BookOpen, Info, LayoutGrid } from "lucide-react";
+import { Menu, X, BookOpen, Info, MessageSquareText, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
-// Commented out LoginButton import
-// import { LoginButton } from "@/components/auth/LoginButton";
+import { LoginButton } from "@/components/auth/LoginButton";
 import { Helmet } from "react-helmet-async";
 
 export function Header() {
@@ -30,7 +30,7 @@ export function Header() {
     { name: "Blog", path: "/", icon: <BookOpen className="h-4 w-4 mr-2" /> },
     { name: "About", path: "/about", icon: <Info className="h-4 w-4 mr-2" /> },
     { name: "AI Gallery", path: "/ai-gallery", icon: <LayoutGrid className="h-4 w-4 mr-2" /> },
-    // Removed Chatbot navigation item
+    { name: "Chatbot", path: "/chatbot", icon: <MessageSquareText className="h-4 w-4 mr-2" /> },
   ];
 
   // Create organization structured data for the website
@@ -118,7 +118,7 @@ export function Header() {
             </nav>
 
             <div className="flex items-center gap-4">
-              {/* Removed LoginButton component */}
+              <LoginButton />
               <ThemeToggle />
               
               {/* Mobile menu button */}

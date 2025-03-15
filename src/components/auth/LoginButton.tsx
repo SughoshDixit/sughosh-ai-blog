@@ -12,13 +12,13 @@ export const LoginButton = () => {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <img 
-              src={user?.photoURL || ''} 
+              src={user?.user_metadata?.avatar_url || ''} 
               alt="Profile" 
               className="w-8 h-8 rounded-full"
               referrerPolicy="no-referrer"
             />
             <span className="text-sm font-medium hidden md:inline">
-              {user?.displayName}
+              {user?.user_metadata?.full_name || user?.email}
             </span>
           </div>
           <Button 

@@ -12,8 +12,7 @@ import BlogPage from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import ChatbotPage from "./pages/Chatbot";
 import AIGalleryPage from "./pages/AIGallery";
-// Commented out ChatbotButton import
-// import { ChatbotButton } from "./components/chatbot/ChatbotButton";
+import { ChatbotButton } from "./components/chatbot/ChatbotButton";
 
 const queryClient = new QueryClient();
 
@@ -33,10 +32,11 @@ const App = () => (
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/chatbot" element={<ChatbotPage />} />
               <Route path="/ai-gallery" element={<AIGalleryPage />} />
+              <Route path="/auth/callback" element={<AuthCallback />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            {/* Removed ChatbotButton component */}
+            <ChatbotButton />
           </BrowserRouter>
         </TooltipProvider>
       </HelmetProvider>
