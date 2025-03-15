@@ -2,14 +2,19 @@
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "sonner";
-import { User } from "firebase/auth";
+
+// Simple user type to handle both Firebase and Supabase users
+type SimpleUser = {
+  uid: string;
+  email?: string | null;
+} | null;
 
 export const uploadGalleryItem = async (
   file: File,
   title: string,
   description: string,
   fileType: 'image' | 'video',
-  user: User | null,
+  user: SimpleUser,
   onProgress?: (progress: number) => void
 ): Promise<void> => {
   if (!title.trim()) {

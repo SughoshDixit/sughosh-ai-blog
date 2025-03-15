@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Separator } from "@/components/ui/separator";
 import { getPostBySlug, getCommentsByPostId } from "@/services/blogService";
 import { BlogPost, Comment } from "@/types";
+import { useAuth } from "@/context/AuthContext";
 
 // Import the newly created components
 import { PostHeader } from "@/components/blog/PostHeader";
@@ -19,11 +20,11 @@ import { BlogPostSEO } from "@/components/blog/BlogPostSEO";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { isAuthenticated } = useAuth();
   
   const [post, setPost] = useState<BlogPost | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Simplified auth state
   const [notebooks, setNotebooks] = useState<any[]>([]);
 
   // Fetch post and comments
@@ -117,7 +118,7 @@ const BlogPostPage = () => {
               notebooks={notebooks}
             />
 
-            <PostActions initialLikes={post.likes} isAuthenticated={isAuthenticated} />
+            <PostActions initialLikes={post.likes} postId={post.id} />
 
             <Separator className="my-12" />
 

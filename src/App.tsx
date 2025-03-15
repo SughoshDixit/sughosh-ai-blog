@@ -13,6 +13,7 @@ import BlogPostPage from "./pages/BlogPost";
 import ChatbotPage from "./pages/Chatbot";
 import AIGalleryPage from "./pages/AIGallery";
 import { ChatbotButton } from "./components/chatbot/ChatbotButton";
+import AuthCallback from "./components/auth/AuthCallback";
 
 const queryClient = new QueryClient();
 

@@ -47,7 +47,13 @@ export const ImageUploader = ({ onUploadComplete }: ImageUploaderProps) => {
     setUploadProgress(0);
     
     try {
-      await uploadGalleryItem(file, title, description, fileType, user, (progress) => {
+      // We're not passing the user object directly, instead extract what we need
+      const userInfo = user ? {
+        uid: user.id,
+        email: user.email
+      } : null;
+
+      await uploadGalleryItem(file, title, description, fileType, userInfo, (progress) => {
         setUploadProgress(progress);
       });
       setUploading(false);
