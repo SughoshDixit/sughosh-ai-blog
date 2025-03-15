@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "@/context/AuthContext";
+import Index from "./pages/Index";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import BlogPage from "./pages/Blog";
@@ -26,10 +27,10 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              {/* Make Blog the main landing page */}
-              <Route path="/" element={<BlogPage />} />
+              {/* Use Index as the main landing page */}
+              <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
-              <Route path="/blog" element={<Navigate replace to="/" />} />
+              <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/chatbot" element={<ChatbotPage />} />
               <Route path="/ai-gallery" element={<AIGalleryPage />} />
