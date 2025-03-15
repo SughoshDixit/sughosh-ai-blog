@@ -36,18 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isLoading, setIsLoading] = useState(false);
   const isAdmin = !!user && user.email === ADMIN_EMAIL;
 
-  // Check for Supabase configuration
-  const isSupabaseConfigured = 
-    !!import.meta.env.VITE_SUPABASE_URL && 
-    !!import.meta.env.VITE_SUPABASE_ANON_KEY;
-
   useEffect(() => {
-    if (!isSupabaseConfigured) {
-      console.warn("Supabase configuration is missing. Auth features are disabled.");
-      setIsLoading(false);
-      return;
-    }
-
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
@@ -66,16 +55,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     return () => {
       subscription.unsubscribe();
     };
-  }, [isSupabaseConfigured]);
+  }, []);
 
   const signInWithGoogle = async () => {
-    if (!isSupabaseConfigured) {
-      toast.error("Authentication is disabled", {
-        description: "Supabase configuration is missing. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables."
-      });
-      return;
-    }
-
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signInWithOAuth({
@@ -99,13 +81,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const signInWithEmail = async (email: string, password: string) => {
-    if (!isSupabaseConfigured) {
-      toast.error("Authentication is disabled", {
-        description: "Supabase configuration is missing. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables."
-      });
-      return;
-    }
-
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signInWithPassword({
@@ -128,11 +103,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const signOut = async () => {
-    if (!isSupabaseConfigured) {
-      setUser(null);
-      return;
-    }
-
     try {
       setIsLoading(true);
       const { error } = await supabase.auth.signOut();

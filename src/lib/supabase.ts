@@ -1,14 +1,16 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Check if environment variables are available
-const hasEnvVars = 
-  import.meta.env.VITE_SUPABASE_URL && 
-  import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Your Supabase credentials
+const SUPABASE_URL = "https://txhepdgeeykkggnsmomq.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4aGVwZGdlZXlra2dnbnNtb21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIwNTkxMDIsImV4cCI6MjA1NzYzNTEwMn0.WYes42EudoIlV71Th0ZPaqqaAPN30qZg70VQFJ0suvA";
 
-// Create a mock client if environment variables are missing
+// Check if we have valid Supabase credentials
+const hasValidCredentials = SUPABASE_URL && SUPABASE_ANON_KEY;
+
+// Create a mock client if credentials are missing
 const createMockClient = () => {
-  console.warn('Missing Supabase environment variables. Auth features are disabled.');
+  console.warn('Missing Supabase credentials. Auth features are disabled.');
   
   // Return a mock client that doesn't actually connect to any URL
   return {
@@ -36,10 +38,7 @@ const createMockClient = () => {
   };
 };
 
-// Create the actual client only if we have environment variables, otherwise use mock
-export const supabase = hasEnvVars 
-  ? createClient(
-      import.meta.env.VITE_SUPABASE_URL, 
-      import.meta.env.VITE_SUPABASE_ANON_KEY
-    )
+// Create the Supabase client with your credentials
+export const supabase = hasValidCredentials 
+  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
   : createMockClient() as any; // Type cast to avoid TypeScript errors
